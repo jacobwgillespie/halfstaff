@@ -10,7 +10,7 @@ const flatten = list => list.reduce(
   (a, b) => a.concat(Array.isArray(b) ? flatten(b) : b), []
 );
 
-const basePath = path.join(__dirname, '..', 'data', 'potus');
+const basePath = path.join(__dirname, '..', 'data');
 const months = [
   'january',
   'february',
@@ -84,12 +84,15 @@ const buildHTML = proclamation => {
     line => line.replace(/[\t\n]/, ' ').split(/<br( ?\/)?>/)
   ));
 
+  let firstLine;
+
   const html = normalizedBody.filter(
     line => line
   ).map(line => {
-    const trimmedLine = line.trim();
+    const trimmedLine = line.replace(/&(#xA0|nbsp);$/, '').trim();
 
     if (trimmedLine.match(/[a-z]/)) {
+      if (!firstLine) firstLine = trimmedLine;
       return `<p>${trimmedLine}</p>`;
     }
     return `<p class="center">${trimmedLine}</p>`;
@@ -98,6 +101,7 @@ const buildHTML = proclamation => {
   return {
     ...proclamation,
     html,
+    firstLine,
   };
 };
 
@@ -108,5 +112,7 @@ const proclamations = potus.map(
 );
 
 proclamations.forEach(proclamation => {
-  fs.writeJson(path.join(basePath, `${proclamation.id}.json`), proclamation);
+  fs.writeJson(path.join(basePath, 'potus', `${proclamation.id}.json`), proclamation);
 });
+
+fs.writeJson(path.join(basePath, 'recent.json'), proclamations);

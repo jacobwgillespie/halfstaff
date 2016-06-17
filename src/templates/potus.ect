@@ -1,0 +1,42 @@
+<% extend 'layout.ect' %>
+
+<% include 'flag.ect', { halfstaff: false } %>
+
+<div class="cards">
+  <div class="card">
+    <div class="title">
+      <h2><%- @cleanTitle %></h2>
+    </div>
+    <div class="text">
+      <%- @trunc(@potus.firstLine, 600) %>
+    </div>
+    <div class="meta">
+      <dl>
+        <dt>Start</dt>
+        <dd><time><%= @moment(@potus.tags.startDate).format('LL') %></time></dd>
+        <% if @potus.tags.endDate : %>
+          <dt>End</dt>
+          <dd><time><%= @moment(@potus.tags.endDate).format('LL') %></time></dd>
+          <dd>
+            <% switch @potus.tags.endTime : %>
+              <% when 'noon': %>
+                Until noon
+              <% end %>
+              <% when 'sunset': %>
+                Until sunset
+              <% end %>
+            <% end %>
+          </dd>
+        <% else if @potus.tags.type == 'interment' : %>
+          <dt>End</dt>
+          <dd>The day of interment</dd>
+        <% end %>
+      </dl>
+    </div>
+    <div class="actions">
+      <a class="more-info" href="<%- @potus.url %>" target="_blank">
+        More Information
+      </a>
+    </div>
+  </div>
+</div>

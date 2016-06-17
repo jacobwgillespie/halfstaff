@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title><%- @title %> | HalfStaff.co</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.1.1/normalize.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Cairo:300,400,600,700" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Cairo', sans-serif;
+    }
+
+    body.fullstaff {
+      background-color: #263238;
+      animation: fullstaffColorChange 2s 0s ease 1 forwards;
+    }
+
+    body.halfstaff {
+      background-color: #B0BEC5;
+      animation: halfstaffColorChange 4s 0s ease 1 forwards;
+    }
+
+    @keyframes halfstaffColorChange {
+      0% {
+        background-color: #B0BEC5;
+      }
+      100% {
+        background-color: #263238;
+      }
+    }
+
+    @keyframes fullstaffColorChange {
+      0% {
+        background-color: #263238;
+      }
+      100% {
+        background-color: #B0BEC5;
+      }
+    }
+
+    .center { text-align: center; }
+
+    .main {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      padding: 0;
+      margin-right: -10vw;
+      box-sizing: border-box;
+      padding-bottom: 2em;
+    }
+
+    .flag, .cards {
+      margin-right: 10vw;
+    }
+
+    .flag {
+      width: 150px;
+    }
+
+    .cards {
+      margin-top: -80px;
+    }
+
+    .card {
+      max-width: 440px;
+      background-color: #fff;
+      padding: 6px;
+      border-radius: 2px;
+      box-sizing: border-box;
+      font-size: 16px;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12);
+    }
+
+    .card .title,
+    .card .text,
+    .card .meta,
+    .card .actions {
+      padding: 16px;
+    }
+
+    .card .title h2 {
+      font-size: 24px;
+      font-weight: 300;
+      margin: 0;
+      padding: 0;
+    }
+
+    .card .text,
+    .card .meta {
+      font-size: 14px;
+      line-height: 18px;
+      font-weight: 400;
+      width: 90%;
+      color: rgba(0,0,0,.54);
+    }
+
+    .card .actions a {
+      color: #01579B;
+      text-decoration: none;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+
+    @media screen and (min-width: 750px) {
+      .main {
+        flex-direction: row;
+      }
+
+      .flag {
+        width: 200px;
+      }
+
+      .cards {
+        margin-top: 0;
+      }
+    }
+  </style>
+</head>
+<body class="<% if @halfstaff: %>halfstaff<% else : %>fullstaff<% end %>">
+  <main class="main">
+    <% content %>
+  </main>
+</body>
+</html>
