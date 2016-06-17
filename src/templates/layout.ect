@@ -5,7 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title><%- @title %> | HalfStaff.co</title>
+  <title><%- @title %> | Half Staff</title>
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.1.1/normalize.min.css">
   <link href="https://fonts.googleapis.com/css?family=Cairo:300,400,600,700" rel="stylesheet">
@@ -42,6 +42,48 @@
       }
     }
 
+    .header {
+      height: 24px;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      box-sizing: border-box;
+      padding: 2em;
+      margin-bottom: 2em;
+    }
+
+    .header a {
+      color: #fff;
+      text-decoration: none;
+    }
+
+    .header .title {
+      font-size: 2em;
+      font-weight: 300;
+      line-height: 1em;
+    }
+
+    .header .title small {
+      font-size: 16px;
+      line-height: 18px;
+    }
+
+    .header ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: flex;
+      flex-direction: row;
+      margin-right: -1em;
+    }
+
+    .header ul li {
+      margin: 0;
+      padding: 0;
+      margin-right: 1em;
+    }
+
     .center { text-align: center; }
 
     .main {
@@ -49,12 +91,10 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      min-height: 100vh;
+      min-height: 90vh;
       margin: 0;
       padding: 0;
       margin-right: -10vw;
-      box-sizing: border-box;
-      padding-bottom: 2em;
     }
 
     .flag, .cards {
@@ -88,11 +128,17 @@
       padding: 16px;
     }
 
+    .card .title h3 {
+      font-weight: 700;
+      line-height: 1em;
+    }
+
     .card .title h2 {
       font-size: 24px;
       font-weight: 300;
       margin: 0;
       padding: 0;
+      line-height: 1em;
     }
 
     .card .text,
@@ -127,6 +173,12 @@
   </style>
 </head>
 <body class="<% if @halfstaff: %>halfstaff<% else : %>fullstaff<% end %>">
+  <header class="header">
+    <a class="title" href="/"><% if @halfstaff: %><small>currently at</small><br><% end %>Half Staff</a>
+    <ul class="menu">
+      <li><a href="/about/">About</a></li>
+    </ul>
+  </header>
   <main class="main">
     <% content %>
   </main>
