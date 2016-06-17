@@ -1,0 +1,4 @@
+#!/bin/bash
+
+mkdir -p data
+./node_modules/.bin/babel-node src/fetch-potus.js > data/potus.json
