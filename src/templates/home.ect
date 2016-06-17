@@ -1,0 +1,60 @@
+<% extend 'layout.ect' %>
+
+<% include 'flag.ect' %>
+
+<div class="cards">
+  <% for potus in @current : %>
+  <div class="card">
+    <div class="title">
+      <h3><%- @moment(potus.date).format('LL') %></h3>
+      <h2><a href="/<%- potus.id %>/"><%- potus.cleanTitle %></a></h2>
+    </div>
+    <div class="meta">
+      <div class="time">
+        <div class="label">Start</div>
+        <div><time><%= @moment(potus.tags.startDate).format('LL') %></time></div>
+      </div>
+      <% if potus.tags.endDate : %>
+      <div class="time">
+        <div class="label">End</div>
+        <div>
+          <time><%= @moment(potus.tags.endDate).format('LL') %></time>
+          <% switch potus.tags.endTime : %>
+            <% when 'noon': %>
+              until noon
+            <% end %>
+            <% when 'sunset': %>
+              until sunset
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+      <% else if potus.tags.type == 'interment' : %>
+      <div class="time">
+        <div class="label">End</div>
+        <div>The day of interment</div>
+      </div>
+      <% end %>
+    </div>
+    <div class="actions">
+      <a class="more-info" href="/<%- potus.id %>/">
+        Details
+      </a>
+    </div>
+  </div>
+  <% end %>
+
+  <div class="card recent">
+    <div class="title">
+      <h3>Recent Notices</h3>
+    </div>
+    <div class="text">
+      <% for potus in @recent : %>
+      <div class="recent-notice">
+        <a href="/<%- potus.id %>/"><%- potus.cleanTitle %></a>
+        <small><%- @moment(potus.tags.startDate).format('LL') %></small>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>

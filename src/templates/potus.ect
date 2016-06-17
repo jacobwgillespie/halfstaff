@@ -1,38 +1,42 @@
 <% extend 'layout.ect' %>
 
-<% include 'flag.ect', { halfstaff: false } %>
+<% include 'flag.ect' %>
 
 <div class="cards">
   <div class="card">
     <div class="title">
       <h3><%- @moment(@potus.date).format('LL') %></h3>
-      <h2><%- @cleanTitle %></h2>
+      <h2><%- @potus.cleanTitle %></h2>
     </div>
     <div class="text">
       <%- @trunc(@potus.firstLine, 600) %>
     </div>
     <div class="meta">
-      <dl>
-        <dt>Start</dt>
-        <dd><time><%= @moment(@potus.tags.startDate).format('LL') %></time></dd>
-        <% if @potus.tags.endDate : %>
-          <dt>End</dt>
-          <dd><time><%= @moment(@potus.tags.endDate).format('LL') %></time></dd>
-          <dd>
-            <% switch @potus.tags.endTime : %>
-              <% when 'noon': %>
-                Until noon
-              <% end %>
-              <% when 'sunset': %>
-                Until sunset
-              <% end %>
+      <div class="time">
+        <div class="label">Start</div>
+        <div><time><%= @moment(@potus.tags.startDate).format('LL') %></time></div>
+      </div>
+      <% if @potus.tags.endDate : %>
+      <div class="time">
+        <div class="label">End</div>
+        <div>
+          <time><%= @moment(@potus.tags.endDate).format('LL') %></time>
+          <% switch @potus.tags.endTime : %>
+            <% when 'noon': %>
+              until noon
             <% end %>
-          </dd>
-        <% else if @potus.tags.type == 'interment' : %>
-          <dt>End</dt>
-          <dd>The day of interment</dd>
-        <% end %>
-      </dl>
+            <% when 'sunset': %>
+              until sunset
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+      <% else if @potus.tags.type == 'interment' : %>
+      <div class="time">
+        <div class="label">End</div>
+        <div>The day of interment</div>
+      </div>
+      <% end %>
     </div>
     <div class="actions">
       <a class="more-info" href="<%- @potus.url %>" target="_blank">

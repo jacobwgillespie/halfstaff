@@ -66,10 +66,11 @@ const tagProclamation = proclamation => {
     }
 
     if (durations[5]) {
-      tags.endDate = moment.utc(durations[5], 'MMMM D, YYYY').valueOf();
+      tags.endDate = moment.utc(durations[5], 'MMMM D, YYYY').endOf('day').valueOf();
     }
   } else {
-    tags.startDate = tags.endDate = newestDate.valueOf();
+    tags.startDate = newestDate.startOf('day').valueOf();
+    tags.endDate = newestDate.endOf('day').valueOf();
     tags.endTime = 'end_of_day';
   }
 
@@ -98,10 +99,13 @@ const buildHTML = proclamation => {
     return `<p class="center">${trimmedLine}</p>`;
   }).join('');
 
+  const cleanTitle = proclamation.title.replace(/presidential proclamation( --|:)/i, '').trim();
+
   return {
     ...proclamation,
     html,
     firstLine,
+    cleanTitle,
   };
 };
 
