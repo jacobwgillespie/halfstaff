@@ -18,17 +18,26 @@ const trunc = (string, n, useWordBoundary = true) => {
     ? shortenedString.substr(0, shortenedString.lastIndexOf(' '))
     : shortenedString;
 
-  return isTooLong ? `${shortenedString}&hellip;` : shortenedString;
+  return isTooLong ? `${shortenedString.replace(/\s[\w.]+\s*$/, '')}&hellip;` : shortenedString;
 };
 
 sources.forEach(filename => {
   const potus = fs.readJsonSync(path.join(potusPath, filename));
 
-  const cleanTitle = potus.title.replace(/presidential proclamation --/i, '').trim();
+  const cleanTitle = potus.title.replace(/presidential proclamation( --|:)/i, '').trim();
 
   const title = `${moment(potus.date).format('LL')} - ${cleanTitle}`;
+  const description = trunc(`The flag is at half staff. ${potus.firstLine}`, 150);
 
-  const data = { title, potus, cleanTitle, halfstaff: true, trunc, moment };
+  const data = {
+    cleanTitle,
+    description,
+    halfstaff: true,
+    moment,
+    potus,
+    title,
+    trunc,
+  };
 
   const html = renderer.render('potus.ect', data);
 
