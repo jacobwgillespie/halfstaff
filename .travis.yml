@@ -2,7 +2,8 @@ language: node_js
 node_js:
   - "6"
 cache:
-  - node_modules
+  directories:
+    - node_modules
 env:
   global:
     - CXX=g++-4.8
