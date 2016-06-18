@@ -4,6 +4,8 @@ import fs from 'fs-extra';
 import moment from 'moment';
 import path from 'path';
 
+import 'moment-timezone';
+
 import potus from '../data/potus.json';
 
 const flatten = list => list.reduce(
@@ -50,9 +52,9 @@ const tagProclamation = proclamation => {
 
   const durations = textBody.match(untilRegex);
 
-  let newestDate = moment.utc(proclamation.date);
+  let newestDate = moment.tz(proclamation.date, 'America/Los_Angeles');
   proclamation.nlp.forEach(nlp => {
-    const nlpDate = moment.utc(nlp.date);
+    const nlpDate = moment.tz(nlp.date, 'America/Los_Angeles');
     if (nlpDate.isAfter(newestDate)) newestDate = nlpDate;
   });
   tags.newestDate = newestDate.valueOf();
@@ -66,7 +68,10 @@ const tagProclamation = proclamation => {
     }
 
     if (durations[5]) {
-      tags.endDate = moment.utc(durations[5], 'MMMM D, YYYY').endOf('day').valueOf();
+      tags.endDate = moment
+        .tz(durations[5], 'MMMM D, YYYY', 'America/Los_Angeles')
+        .endOf('day')
+        .valueOf();
     }
   } else {
     tags.startDate = newestDate.startOf('day').valueOf();

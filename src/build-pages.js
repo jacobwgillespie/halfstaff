@@ -3,6 +3,8 @@ import fs from 'fs-extra';
 import moment from 'moment';
 import path from 'path';
 
+import 'moment-timezone';
+
 import recent from '../data/recent.json';
 
 const renderer = ect({ root: path.join(__dirname, 'templates') });
@@ -24,7 +26,7 @@ const trunc = (string, n, useWordBoundary = true) => {
 };
 
 const oneDay = 1000 * 60 * 60 * 24;
-const now = moment.utc([2016, 5, 15, 10, 10, 10]).valueOf();
+const now = moment().valueOf();
 const current = recent.filter(
   potus => potus.tags.startDate <= now
     && (
@@ -38,7 +40,7 @@ const halfstaff = current.length > 0;
 sources.forEach(filename => {
   const potus = fs.readJsonSync(path.join(potusPath, filename));
 
-  const title = `${moment(potus.date).format('LL')} - ${potus.cleanTitle}`;
+  const title = `${moment.tz(potus.date, 'America/New_York').format('LL')} - ${potus.cleanTitle}`;
   const description = trunc(`The flag is at half staff. ${potus.firstLine}`, 150);
 
   const data = {

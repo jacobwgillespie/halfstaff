@@ -6,6 +6,8 @@ import Hashids from 'hashids';
 import Knwl from 'knwl.js';
 import moment from 'moment';
 
+import 'moment-timezone';
+
 const hashids = new Hashids('halfstaff');
 
 const flatten = list => list.reduce(
@@ -47,7 +49,7 @@ const fetchFlagProclamations = async urls => {
       const knwl = new Knwl('english');
       knwl.init(proclamation.body.join(' '));
 
-      const date = moment.utc(proclamation.date, 'MMMM D, YYYY').valueOf();
+      const date = moment.tz(proclamation.date, 'MMMM D, YYYY', 'America/New_York').valueOf();
       const contentHash = crypto.createHash('md5').update(proclamation.title, 'utf8').digest('hex');
       const id = hashids.encodeHex(date.toString(16), contentHash);
 
@@ -57,7 +59,11 @@ const fetchFlagProclamations = async urls => {
         date,
         nlp: knwl.get('dates').map(nlp => ({
           ...nlp,
-          date: moment.utc({ year: nlp.year, month: nlp.month - 1, day: nlp.day }).valueOf(),
+          date: moment.tz({
+            year: nlp.year,
+            month: nlp.month - 1,
+            day: nlp.day,
+          }, 'America/New_York').valueOf(),
         })),
       };
     }

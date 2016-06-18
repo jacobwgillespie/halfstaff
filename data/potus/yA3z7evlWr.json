@@ -1,6 +1,6 @@
 {
   "title": "Presidential Proclamation -- Honoring the Victims of the Attack in Brussels, Belgium",
-  "date": 1458604800000,
+  "date": 1458619200000,
   "body": [
     "HONORING THE VICTIMS OF THE ATTACK IN BRUSSELS, BELGIUM",
     "- - - - - - -",
@@ -13,7 +13,7 @@
     "BARACK OBAMA"
   ],
   "url": "https://www.whitehouse.gov/the-press-office/2016/03/22/presidential-proclamation-honoring-victims-attack-brussels-belgium",
-  "id": "yA3zEdj6e0",
+  "id": "yA3z7evlWr",
   "nlp": [
     {
       "year": 2016,
@@ -21,7 +21,7 @@
       "day": 22,
       "preview": "for the victims of the senseless acts of violence perpetrated on March 22, 2016, in Brussels,Belgium, by the authority vested in me as",
       "found": 84,
-      "date": 1458604800000
+      "date": 1458619200000
     },
     {
       "year": 2016,
@@ -29,15 +29,15 @@
       "day": 26,
       "preview": "throughout the United States and its Territories and possessions until sunset, March 26, 2016.&#xA0; I also direct that the flag shall be flown",
       "found": 172,
-      "date": 1458950400000
+      "date": 1458964800000
     }
   ],
   "tags": {
     "type": "date",
-    "newestDate": 1458950400000,
-    "startDate": 1458604800000,
+    "newestDate": 1458964800000,
+    "startDate": 1458619200000,
     "endTime": "sunset",
-    "endDate": 1459036799999
+    "endDate": 1459061999999
   },
   "html": "<p class=\"center\">HONORING THE VICTIMS OF THE ATTACK IN BRUSSELS, BELGIUM</p><p class=\"center\">- - - - - - -</p><p class=\"center\">BY THE PRESIDENT OF THE UNITED STATES OF AMERICA</p><p class=\"center\">A PROCLAMATION</p><p>The American people stand with the people of Brussels.&#xA0; We will do whatever it takes, working with nations and peoples around the world, to bring the perpetrators of these attacks to justice, and to go after terrorists who threaten our people</p><p>As a mark of respect for the victims of the senseless acts of violence perpetrated on March 22, 2016, in Brussels,Belgium, by the authority vested in me as President of the United States by the Constitution and the laws of the United States of America, I hereby order that the flag of the United States shall be flown at half-staff at the White House and upon all public buildings and grounds, at all military posts and naval stations, and on all naval vessels of the Federal Government in the District of Columbia and throughout the United States and its Territories and possessions until sunset, March 26, 2016.&#xA0; I also direct that the flag shall be flown at half-staff for the same length of time at all United States embassies, legations, consular offices, and other facilities abroad, including all military facilities and naval vessels and stations.</p><p>IN WITNESS WHEREOF, I have hereunto set my hand this twenty-second day of March, in the year of our Lord two thousand sixteen, and of the Independence of the United States of America the two hundred and fortieth.</p><p class=\"center\"></p><p class=\"center\">BARACK OBAMA</p>",
   "firstLine": "The American people stand with the people of Brussels.&#xA0; We will do whatever it takes, working with nations and peoples around the world, to bring the perpetrators of these attacks to justice, and to go after terrorists who threaten our people",
