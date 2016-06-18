@@ -7,10 +7,10 @@ import 'moment-timezone';
 
 import recent from '../data/recent.json';
 
-const renderer = ect({ root: path.join(__dirname, 'templates') });
+const renderer = ect({ root: path.join(__dirname, '..', 'app', 'templates') });
 
 const potusPath = path.join(__dirname, '..', 'data', 'potus');
-const destPath = path.join(__dirname, '..', 'dist');
+const destPath = path.join(__dirname, '..', 'app', 'generatedPages');
 const sources = fs.readdirSync(potusPath);
 
 const trunc = (string, n, useWordBoundary = true) => {
@@ -64,7 +64,7 @@ const buildHome = () => {
     : 'The flag is at full staff';
   const description = trunc(halfstaff
     ? `${title}. ${current[0].firstLine}`
-    : '${title}. Browse recent flag notices and read about flag etiquette.',
+    : `${title}. Browse recent flag notices and read about flag etiquette.`,
     150
   );
 

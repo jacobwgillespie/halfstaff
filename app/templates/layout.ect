@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+
+  <title><%- @title %> | Half Staff</title>
+
+  <meta name="description" content="<%- @description %>">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.1.1/normalize.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Cairo:300,400,600,700" rel="stylesheet">
+  <!-- build:css styles/style.css -->
+  <link rel="stylesheet" href="/styles/style.scss">
+  <!-- endbuild -->
+</head>
+<body class="<% if @halfstaff: %>halfstaff<% else : %>fullstaff<% end %>">
+  <header class="header">
+    <a class="title" href="/"><small>currently at</small><br><% if @currentHalfstaff: %>Half Staff<% else : %>Full Staff<% end %></a>
+    <ul class="menu">
+      <li><a href="/about/">About</a></li>
+    </ul>
+  </header>
+  <main class="main">
+    <% content %>
+  </main>
+</body>
+</html>
