@@ -18,4 +18,4 @@ script:
   - ./bin/build-pages
   - ./node_modules/.bin/gulp
 after_success:
-  - if [[ "$TRAVIS_BRANCH" = "master" ]]; then ./scripts/deploy.sh; fi
+  - if [[ "$TRAVIS_BRANCH" = "master" ]]; then ./support/deploy.sh; fi
