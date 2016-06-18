@@ -24,6 +24,7 @@ import cache from 'gulp-cache';
 import imagemin from 'gulp-imagemin';
 import { output as pagespeed } from 'psi';
 import swPrecache from 'sw-precache';
+import { stream as critical } from 'critical';
 
 import pkg from './package.json';
 
@@ -90,8 +91,16 @@ gulp.task('html', () =>
       searchPath: '{.tmp,app}',
       noAssets: true,
     }))
-
-    // Minify any HTML
+    .pipe(revCollector({
+      replaceReved: true,
+    }))
+    .pipe(critical({
+      base: 'dist/',
+      inline: true,
+      minify: true,
+      ignore: ['@font-face'],
+      // css: ['dist/styles/style.css'],
+    }))
     .pipe(gulpIf('*.html', htmlmin({
       removeComments: true,
       collapseWhitespace: true,
@@ -103,10 +112,6 @@ gulp.task('html', () =>
       removeStyleLinkTypeAttributes: true,
       removeOptionalTags: true,
     })))
-    // Output files
-    .pipe(revCollector({
-      replaceReved: true,
-    }))
     .pipe(gulpIf('*.html', size({ title: 'html', showFiles: true })))
     .pipe(gulp.dest('dist'))
 );

@@ -12,6 +12,7 @@
   "dependencies": {
     "autoprefixer": "^6.3.6",
     "browser-sync": "^2.13.0",
+    "critical": "^0.7.3",
     "cssnano": "^3.7.1",
     "del": "^2.2.0",
     "ect": "^0.5.9",
