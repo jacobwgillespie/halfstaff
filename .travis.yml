@@ -1,0 +1,21 @@
+language: node_js
+node_js:
+  - "6"
+cache:
+  - node_modules
+env:
+  global:
+    - CXX=g++-4.8
+    # GH_TOKEN=xxxxxxxxxxxxxxxxxx
+    - secure: "a+FFKITeUmzikEMNGyH35eiGBKcUDaHONHMPsjsEzYIq+uyyiXAI9VoJTNs3wr5eT7dbPPy3Mk6QQhE3sA0IS7J7ZmMyvQjHC/fWrPc/MPqG7/Byff6OtCo3Ma02AvEJUCLBIQ+NXFuV/pyJ18zU08b6EDZgy1qL681wSMHfK38="
+addons:
+  apt:
+    sources:
+      - ubuntu-toolchain-r-test
+    packages:
+      - g++-4.8
+script:
+  - ./bin/build-pages
+  - ./node_modules/.bin/gulp
+after_success:
+  - if [[ "$TRAVIS_BRANCH" = "master" ]]; then ./scripts/deploy.sh; fi

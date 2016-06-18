@@ -85,3 +85,25 @@ const buildHome = () => {
 };
 
 buildHome();
+
+const buildAbout = () => {
+  const title = 'About HalfStaff.co';
+  const description = trunc(
+    'Browse recent flag notices and read about flag etiquette.',
+    150
+  );
+
+  const data = {
+    currentHalfstaff: halfstaff,
+    description,
+    halfstaff,
+    title,
+    trunc,
+  };
+
+  const html = renderer.render('about.ect', data);
+
+  fs.outputFileSync(path.join(destPath, 'about/index.html'), html);
+};
+
+buildAbout();
