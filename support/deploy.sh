@@ -5,7 +5,7 @@ if [[ "$CI" == "true" && "$TRAVIS_PULL_REQUEST" != "false"  && "$TRAVIS_BRANCH" 
   exit 0
 fi
 
-cd build
+cd dist
 
 # Deploy to main site
 git init
