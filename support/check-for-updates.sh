@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 commit() {
   message="Automatic update at $(date)"
   git add -A && git commit -av -m "$message"
@@ -8,7 +10,7 @@ commit() {
 
 rm -rf .tmp/repo
 mkdir -p .tmp/node_modules
-git clone --depth=1 https://github.com/jacobwgillespie/halfstaff.git .tmp/repo
+git clone --depth=1 git@github.com:jacobwgillespie/halfstaff.git .tmp/repo
 cd .tmp/repo
 
 ln -s ../node_modules node_modules
