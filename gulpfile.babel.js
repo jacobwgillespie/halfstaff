@@ -138,7 +138,7 @@ gulp.task('serve', ['scripts', 'styles'], () => {
     notify: false,
     logPrefix: 'HS',
     scrollElementMapping: ['main'],
-    server: ['.tmp', 'app'],
+    server: ['.tmp', 'app', 'app/generatedPages'],
     port: 3000,
   });
 
