@@ -17,7 +17,7 @@ addons:
     packages:
       - g++-4.8
 script:
-  - ./bin/build-pages
-  - ./node_modules/.bin/gulp
+  - npm run build-pages
+  - npm run build-site
 after_success:
   - if [[ "$TRAVIS_BRANCH" = "master" ]]; then ./support/deploy.sh; fi
