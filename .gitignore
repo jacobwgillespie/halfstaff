@@ -3,4 +3,4 @@
 app/generatedPages
 data/potus.json
 dist/
-node_modules/
+node_modules
