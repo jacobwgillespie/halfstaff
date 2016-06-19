@@ -13,7 +13,7 @@ const isLocalhost = Boolean(window.location.hostname === 'localhost' ||
 
 if ('serviceWorker' in navigator &&
     (window.location.protocol === 'https:' || isLocalhost)) {
-  navigator.serviceWorker.register('service-worker.js')
+  navigator.serviceWorker.register('/service-worker.js')
   .then(registration => {
     // updatefound is fired if service-worker.js changes.
     registration.onupdatefound = () => { // eslint-disable-line no-param-reassign
