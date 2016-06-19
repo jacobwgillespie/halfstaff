@@ -13,6 +13,9 @@ mkdir -p .tmp/node_modules
 git clone --depth=1 git@github.com:jacobwgillespie/halfstaff.git .tmp/repo
 cd .tmp/repo
 
+git config user.name "Jacob Gillespie"
+git config user.email "jacobwgillespie@gmail.com"
+
 ln -s ../node_modules node_modules
 npm install
 
