@@ -213,7 +213,7 @@ body.halfstaff {
 }
 
 .cards {
-  margin-top: -160px;
+  margin-top: -80px;
 }
 
 .card {
@@ -329,60 +329,70 @@ body.halfstaff {
   }
 
   .cards {
-    margin-top: 20px;
+    margin-top: 0;
   }
 }
 
 // Flag
 
 .cls-1 {
+  fill: #c03a2b;
+}
+.cls-2 {
+  fill: #d1d4d1;
+}
+.cls-3 {
   fill: #556080;
 }
-
-.cls-2 {
+.cls-4 {
+  fill: #0096e6;
+}
+.cls-5 {
   fill: #8697cb;
 }
-
-.cls-3 {
+.cls-6 {
+  fill: #285680;
+}
+.cls-7 {
+  fill: #fff;
+}
+.cls-8 {
   fill: #f0c419;
 }
-
-.cls-4 {
-  fill: #B22234;
+.cls-9 {
+  fill: #701919;
 }
-
-.cls-5 {
-  fill: #3C3B6E;
+.cls-10 {
+  fill: #ecf0f1;
 }
-
-.cls-6 {
-  fill: #ffffff;
+.cls-11 {
+  fill: #e64c3c;
 }
 
 .halfstaff .banner {
-  transform: translateY(160px) translateX(157px);
+  transform: translateY(0px);
   animation: halfstaff 4s 0s ease 1 forwards;
 }
 
 .fullstaff .banner {
-  transform: translateY(2000px) translateX(157px);
+  transform: translateY(80px);
   animation: fullstaff 2s 0s ease 1 forwards;
 }
 
 @keyframes halfstaff {
   0% {
-    transform: translateY(160px) translateX(157px);
+    transform: translateY(0px);
   }
   100% {
-    transform: translateY(1200px) translateX(157px);
+    transform: translateY(40px);
   }
 }
 
 @keyframes fullstaff {
   0% {
-    transform: translateY(2000px) translateX(157px);
+    transform: translateY(80px);
   }
   100% {
-    transform: translateY(160px) translateX(157px);
+    transform: translateY(0px);
   }
 }
