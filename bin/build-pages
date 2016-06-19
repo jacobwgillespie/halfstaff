@@ -1,4 +1,0 @@
-#!/bin/bash
-
-mkdir -p dist
-./node_modules/.bin/babel-node support/build-pages.js

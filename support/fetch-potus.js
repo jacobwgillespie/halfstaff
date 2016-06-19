@@ -1,14 +1,15 @@
-/* eslint-disable no-console */
-
 import buildXray from 'x-ray';
 import crypto from 'crypto';
+import fs from 'fs-extra';
 import Hashids from 'hashids';
 import Knwl from 'knwl.js';
 import moment from 'moment';
+import path from 'path';
 
 import 'moment-timezone';
 
 const hashids = new Hashids('halfstaff');
+const outPath = path.resolve(path.join(__dirname, '..', 'data', 'potus.json'));
 
 const flatten = list => list.reduce(
   (a, b) => a.concat(Array.isArray(b) ? flatten(b) : b), []
@@ -87,5 +88,5 @@ const fetchFlagProclamations = async urls => {
 
   const flagProclamations = await fetchFlagProclamations(allProclamations);
 
-  console.log(JSON.stringify(flagProclamations));
+  fs.writeJsonSync(outPath, flagProclamations);
 })();

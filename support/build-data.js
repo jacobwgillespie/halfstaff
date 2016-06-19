@@ -1,5 +1,3 @@
-/* eslint-disable no-console */
-
 import fs from 'fs-extra';
 import moment from 'moment';
 import path from 'path';
@@ -121,7 +119,7 @@ const proclamations = potus.map(
 );
 
 proclamations.forEach(proclamation => {
-  fs.writeJson(path.join(basePath, 'potus', `${proclamation.id}.json`), proclamation);
+  fs.writeJsonSync(path.join(basePath, 'potus', `${proclamation.id}.json`), proclamation);
 });
 
-fs.writeJson(path.join(basePath, 'recent.json'), proclamations);
+fs.writeJsonSync(path.join(basePath, 'recent.json'), proclamations);

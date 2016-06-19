@@ -1,9 +1,9 @@
 {
   "private": true,
   "scripts": {
-    "fetch-potus": "./bin/fetch-potus",
-    "build-data": "./bin/build-data",
-    "build-pages": "./bin/build-pages",
+    "fetch-potus": "babel-node support/fetch-potus.js",
+    "build-data": "babel-node support/build-data.js",
+    "build-pages": "babel-node support/build-pages.js",
     "build-site": "gulp",
     "test": "exit 0"
   },
