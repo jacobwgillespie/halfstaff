@@ -1,27 +1,29 @@
+import { output as pagespeed } from 'psi';
 import autoprefixer from 'gulp-autoprefixer';
+import babel from 'gulp-babel';
+import browserSync from 'browser-sync';
+import cache from 'gulp-cache';
+import concat from 'gulp-concat';
 import cssnano from 'gulp-cssnano';
 import del from 'del';
-import gulp from 'gulp';
-import path from 'path';
-import rev from 'gulp-rev';
-import sass from 'gulp-sass';
-import useref from 'gulp-useref';
-import realFavicon from 'gulp-real-favicon';
 import fs from 'fs';
-import size from 'gulp-size';
-import newer from 'gulp-newer';
+import gulp from 'gulp';
 import gulpIf from 'gulp-if';
-import sourcemaps from 'gulp-sourcemaps';
-import uncss from 'gulp-uncss';
 import htmlmin from 'gulp-htmlmin';
-import runSequence from 'run-sequence';
-import browserSync from 'browser-sync';
-import revCollector from 'gulp-rev-collector';
-import cache from 'gulp-cache';
 import imagemin from 'gulp-imagemin';
-import { output as pagespeed } from 'psi';
+import newer from 'gulp-newer';
+import path from 'path';
+import realFavicon from 'gulp-real-favicon';
+import rev from 'gulp-rev';
+import revCollector from 'gulp-rev-collector';
+import runSequence from 'run-sequence';
+import sass from 'gulp-sass';
+import size from 'gulp-size';
+import sourcemaps from 'gulp-sourcemaps';
 import swPrecache from 'sw-precache';
-import { stream as critical } from 'critical';
+import uglify from 'gulp-uglify';
+import uncss from 'gulp-uncss';
+import useref from 'gulp-useref';
 
 import pkg from './package.json';
 
@@ -86,6 +88,25 @@ gulp.task('styles', () => {
     .pipe(gulp.dest('dist/rev'));
 });
 
+gulp.task('scripts', () =>
+  gulp.src([
+    'app/scripts/main.js',
+  ])
+    .pipe(newer('.tmp/scripts'))
+    .pipe(sourcemaps.init())
+    .pipe(babel())
+    .pipe(sourcemaps.write())
+    .pipe(gulp.dest('.tmp/scripts'))
+    .pipe(concat('main.min.js'))
+    .pipe(uglify({ preserveComments: 'some' }))
+    .pipe(rev())
+    .pipe(size({ title: 'scripts' }))
+    .pipe(sourcemaps.write('.'))
+    .pipe(gulp.dest('dist/scripts'))
+    .pipe(rev.manifest('scripts.json'))
+    .pipe(gulp.dest('dist/rev'))
+);
+
 gulp.task('html', () =>
   gulp.src(['dist/rev/**/*.json', 'app/generatedPages/**/*.html'])
     .pipe(useref({
@@ -94,13 +115,6 @@ gulp.task('html', () =>
     }))
     .pipe(revCollector({
       replaceReved: true,
-    }))
-    .pipe(critical({
-      base: 'dist/',
-      inline: true,
-      minify: true,
-      ignore: ['@font-face'],
-      // css: ['dist/styles/style.css'],
     }))
     .pipe(gulpIf('*.html', htmlmin({
       removeComments: true,
@@ -147,7 +161,7 @@ gulp.task('serve:dist', ['default'], () =>
 gulp.task('default', ['clean'], cb =>
   runSequence(
     'images',
-    'styles',
+    ['styles', 'scripts'],
     ['html', 'copy'],
     'generate-service-worker',
     cb
@@ -183,7 +197,7 @@ gulp.task('generate-service-worker', ['copy-sw-scripts'], () => {
     staticFileGlobs: [
       // Add/remove glob patterns to match your directory setup.
       `${rootDir}/images/**/*`,
-      // `${rootDir}/scripts/**/*.js`,
+      `${rootDir}/scripts/**/*.js`,
       `${rootDir}/styles/**/*.css`,
       `${rootDir}/*.{html,json}`,
     ],
