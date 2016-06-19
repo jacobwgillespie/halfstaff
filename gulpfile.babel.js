@@ -1,12 +1,9 @@
 import autoprefixer from 'gulp-autoprefixer';
 import cssnano from 'gulp-cssnano';
 import del from 'del';
-// import filter from 'gulp-filter';
 import gulp from 'gulp';
 import path from 'path';
-// import postcss from 'gulp-postcss';
 import rev from 'gulp-rev';
-// import revReplace from 'gulp-rev-replace';
 import sass from 'gulp-sass';
 import useref from 'gulp-useref';
 import realFavicon from 'gulp-real-favicon';
