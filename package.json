@@ -1,13 +1,13 @@
 {
-  "name": "halfstaff",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "private": true,
   "scripts": {
     "fetch-potus": "./bin/fetch-potus",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build-data": "./bin/build-data",
+    "build-pages": "./bin/build-pages",
+    "build-site": "gulp",
+    "test": "exit 0"
   },
-  "author": "Jacob Gillespie",
+  "author": "Jacob Gillespie <jacobwgillespie@gmail.com>",
   "license": "MIT",
   "dependencies": {
     "autoprefixer": "^6.3.6",
@@ -27,9 +27,10 @@
     "gulp-imagemin": "^3.0.1",
     "gulp-newer": "^1.2.0",
     "gulp-postcss": "^6.1.1",
+    "gulp-real-favicon": "^0.2.1",
     "gulp-rev": "^7.1.0",
     "gulp-rev-all": "^0.8.24",
-    "gulp-rev-collector": "^1.0.4",
+    "gulp-rev-collector": "jacobwgillespie/gulp-rev-collector#fix-rev-detection",
     "gulp-rev-replace": "^0.4.3",
     "gulp-sass": "^2.3.2",
     "gulp-size": "^2.1.0",
@@ -54,7 +55,6 @@
     "babel-preset-stage-0": "^6.5.0",
     "eslint": "^2.12.0",
     "eslint-config-airbnb-base": "^3.0.1",
-    "eslint-plugin-import": "^1.8.1",
-    "gulp-real-favicon": "^0.2.1"
+    "eslint-plugin-import": "^1.8.1"
   }
 }

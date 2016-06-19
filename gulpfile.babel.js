@@ -46,11 +46,15 @@ gulp.task('images', () =>
 
 gulp.task('copy', () =>
   gulp.src([
+    'dist/rev/**/*.json',
     'app/*',
     '!app/*.html',
   ], {
     dot: true,
   })
+    .pipe(revCollector({
+      replaceReved: true,
+    }))
     .pipe(gulp.dest('dist'))
     .pipe(size({ title: 'copy' }))
 );
