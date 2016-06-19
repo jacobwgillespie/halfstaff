@@ -263,6 +263,18 @@ body.halfstaff {
   color: rgba(0,0,0,.54);
 }
 
+.card .text p {
+  margin-bottom: 1em;
+}
+
+.card .text p:last-child {
+  margin-bottom: 0;
+}
+
+.card .text a {
+  color: #01579B
+}
+
 .card .meta .time {
   display: flex;
   flex-direction: row;
