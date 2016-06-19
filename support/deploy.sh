@@ -22,8 +22,8 @@ rm -rf .git
 echo "cdn.halfstaff.co" > CNAME
 
 # Remove all HTML files
-find . -name '*.html' -type f -delete
-find . -name '*.html.gz' -type f -delete
+# find . -name '*.html' -type f -delete
+# find . -name '*.html.gz' -type f -delete
 
 # Deploy to CDN
 git init
