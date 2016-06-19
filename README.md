@@ -1,4 +1,4 @@
-# [halfstaff](https://halfstaff.co)
+# [Half Staff](https://halfstaff.co)
 
 Is the flag at half staff?  [Half Staff](https://halfstaff.co) displays the current US flag status in a clean, simple format and allows for browsing past flag notices.
 
