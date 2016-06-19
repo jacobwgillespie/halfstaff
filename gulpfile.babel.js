@@ -216,6 +216,7 @@ gulp.task('generate-service-worker', ['copy-sw-scripts'], () => {
     // This is '/' rather than path.sep because the paths returned from
     // glob always use '/'.
     stripPrefix: `${rootDir}/`,
+    replacePrefix: ASSET_HOST ? `${ASSET_HOST}/` : '',
   });
 });
 
