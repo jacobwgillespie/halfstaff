@@ -28,7 +28,16 @@ import useref from 'gulp-useref';
 import pkg from './package.json';
 
 const FAVICON_DATA_FILE = 'faviconData.json';
+const ASSET_HOST = process.env.ASSET_HOST || '';
 const reload = browserSync.reload;
+
+const useAssetHost = base => manifestValue => `${ASSET_HOST}${base}${manifestValue}`;
+const dirReplacements = {
+  '/images/': useAssetHost('/images/'),
+  '/scripts/': useAssetHost('/scripts/'),
+  '/styles/': useAssetHost('/styles/'),
+  '/': '/',
+};
 
 gulp.task('images', () =>
   gulp.src('app/images/**/*')
@@ -53,6 +62,7 @@ gulp.task('copy', () =>
   })
     .pipe(revCollector({
       replaceReved: true,
+      dirReplacements,
     }))
     .pipe(gulp.dest('dist'))
     .pipe(size({ title: 'copy' }))
@@ -115,6 +125,7 @@ gulp.task('html', () =>
     }))
     .pipe(revCollector({
       replaceReved: true,
+      dirReplacements,
     }))
     .pipe(gulpIf('*.html', htmlmin({
       removeComments: true,
