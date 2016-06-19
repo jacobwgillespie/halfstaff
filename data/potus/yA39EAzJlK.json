@@ -1,0 +1,45 @@
+{
+  "title": "Presidential Proclamation -- Honoring the Victims of the Attack in Orlando, Florida",
+  "date": 1465704000000,
+  "body": [
+    "&#xA0;",
+    "HONORING THE VICTIMS OF THE ATTACK IN ORLANDO, FLORIDA&#xA0;",
+    "- - - - - - -&#xA0;",
+    "BY THE PRESIDENT OF THE UNITED STATES OF AMERICA&#xA0;<br>\n\tA PROCLAMATION&#xA0;",
+    "As a mark of respect for the victims of the act of hatred and terror perpetrated on Sunday, June 12, 2016, in Orlando, Florida, by the authority vested in me as President of the United States by the Constitution and the laws of the United States of America, I hereby order that the flag of the United States shall be flown at half-staff at the White House and upon all public buildings and grounds, at all military posts and naval stations, and on all naval vessels of the Federal Government in the District of Columbia and throughout the United States and its Territories and possessions until sunset, June 16, 2016. I also direct that the flag shall be flown at half-staff for the same length of time at all United States embassies, legations, consular offices, and other facilities abroad, including all military facilities and naval vessels and stations.&#xA0;",
+    "IN WITNESS WHEREOF, I have hereunto set my hand this&#xA0;",
+    "twelfth day of June, in the year of our Lord two thousand sixteen, and of the Independence of the United States of America the two hundred and fortieth.&#xA0;",
+    "BARACK OBAMA&#xA0;",
+    "# # #"
+  ],
+  "url": "https://www.whitehouse.gov/the-press-office/2016/06/12/presidential-proclamation-honoring-victims-attack-orlando-florida",
+  "id": "yA39EAzJlK",
+  "nlp": [
+    {
+      "year": 2016,
+      "month": 6,
+      "day": 12,
+      "preview": "victims of the act of hatred and terror perpetrated on Sunday, June 12, 2016, in Orlando, Florida, by the authority vested in me",
+      "found": 46,
+      "date": 1465704000000
+    },
+    {
+      "year": 2016,
+      "month": 6,
+      "day": 16,
+      "preview": "throughout the United States and its Territories and possessions until sunset, June 16, 2016.",
+      "found": 135,
+      "date": 1466049600000
+    }
+  ],
+  "tags": {
+    "type": "date",
+    "newestDate": 1466049600000,
+    "startDate": 1465704000000,
+    "endTime": "sunset",
+    "endDate": 1466146799999
+  },
+  "html": "<p class=\"center\"></p><p class=\"center\">HONORING THE VICTIMS OF THE ATTACK IN ORLANDO, FLORIDA</p><p class=\"center\">- - - - - - -</p><p class=\"center\">BY THE PRESIDENT OF THE UNITED STATES OF AMERICA</p><p class=\"center\">A PROCLAMATION</p><p>As a mark of respect for the victims of the act of hatred and terror perpetrated on Sunday, June 12, 2016, in Orlando, Florida, by the authority vested in me as President of the United States by the Constitution and the laws of the United States of America, I hereby order that the flag of the United States shall be flown at half-staff at the White House and upon all public buildings and grounds, at all military posts and naval stations, and on all naval vessels of the Federal Government in the District of Columbia and throughout the United States and its Territories and possessions until sunset, June 16, 2016. I also direct that the flag shall be flown at half-staff for the same length of time at all United States embassies, legations, consular offices, and other facilities abroad, including all military facilities and naval vessels and stations.</p><p>IN WITNESS WHEREOF, I have hereunto set my hand this</p><p>twelfth day of June, in the year of our Lord two thousand sixteen, and of the Independence of the United States of America the two hundred and fortieth.</p><p class=\"center\">BARACK OBAMA</p><p class=\"center\"># # #</p>",
+  "firstLine": "As a mark of respect for the victims of the act of hatred and terror perpetrated on Sunday, June 12, 2016, in Orlando, Florida, by the authority vested in me as President of the United States by the Constitution and the laws of the United States of America, I hereby order that the flag of the United States shall be flown at half-staff at the White House and upon all public buildings and grounds, at all military posts and naval stations, and on all naval vessels of the Federal Government in the District of Columbia and throughout the United States and its Territories and possessions until sunset, June 16, 2016. I also direct that the flag shall be flown at half-staff for the same length of time at all United States embassies, legations, consular offices, and other facilities abroad, including all military facilities and naval vessels and stations.",
+  "cleanTitle": "Honoring the Victims of the Attack in Orlando, Florida"
+}
