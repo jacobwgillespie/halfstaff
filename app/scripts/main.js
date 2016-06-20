@@ -1,3 +1,32 @@
+// Prevent links from openening in Safari on iOS web apps
+if (('standalone' in window.navigator) && window.navigator.standalone) {
+  let curnode;
+  const location = document.location;
+  const stop = /^(a|html)$/i;
+  document.addEventListener('click', e => {
+    curnode = e.target;
+    while (!(stop).test(curnode.nodeName)) {
+      curnode = curnode.parentNode;
+    }
+
+    if (
+      // is a link
+      'href' in curnode &&
+      // is not an anchor
+      (curnode.href).replace(location.href, '').indexOf('#') &&
+
+      (
+        // either does not have a proper scheme (relative links)
+        !(/^[a-z\+\.\-]+:/i).test(curnode.href) ||
+        // or is in the same protocol and domain
+        curnode.href.indexOf(`${location.protocol}//${location.host}`) === 0)
+    ) {
+      e.preventDefault();
+      location.href = curnode.href;
+    }
+  }, false);
+}
+
 // Check to make sure service workers are supported in the current browser,
 // and that the current page is accessed from a secure origin. Using a
 // service worker from an insecure origin will trigger JS console errors. See
