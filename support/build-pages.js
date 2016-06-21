@@ -107,3 +107,25 @@ const buildAbout = () => {
 };
 
 buildAbout();
+
+const buildNotifications = () => {
+  const title = 'SMS Notifications';
+  const description = trunc(
+    'Have a flag? Receive flag notices via SMS and know when to lower to half-staff',
+    150
+  );
+
+  const data = {
+    currentHalfstaff: halfstaff,
+    description,
+    halfstaff,
+    title,
+    trunc,
+  };
+
+  const html = renderer.render('notifications.ect', data);
+
+  fs.outputFileSync(path.join(destPath, 'notifications/index.html'), html);
+};
+
+buildNotifications();

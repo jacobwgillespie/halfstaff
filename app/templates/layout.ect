@@ -38,21 +38,35 @@
   <meta name="theme-color" content="#263238">
 
   <link href="https://fonts.googleapis.com/css?family=Cairo:300,400,600,700" rel="stylesheet">
-  <!-- build:css /styles/style.css -->
-  <link rel="stylesheet" href="/styles/style.scss">
-  <!-- endbuild -->
+  <link rel="stylesheet" href="/styles/style.css">
 </head>
 <body class="<% if @halfstaff: %>halfstaff<% else : %>fullstaff<% end %>">
   <header class="header">
     <a class="title" href="/"><small>currently at</small><br><% if @currentHalfstaff: %>Half Staff<% else : %>Full Staff<% end %></a>
     <ul class="menu">
       <li><a href="/about/">About</a></li>
+      <li class="sms-link"><a href="/notifications/">SMS Notifications</a></li>
     </ul>
   </header>
   <main class="main">
     <% content %>
   </main>
-  <script src="/scripts/main.min.js" async></script>
+
+  <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
+  <script>
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyAGtpzl3ssF4Fx8FOU0Q5gbi5tIh4Ulm2E",
+      authDomain: "halfstaff-e1f8a.firebaseapp.com",
+      databaseURL: "https://halfstaff-e1f8a.firebaseio.com",
+      storageBucket: "",
+    };
+    firebase.initializeApp(config);
+  </script>
+
+  <!-- build:js /scripts/main.min.js -->
+  <script src="/scripts/main.js"></script>
+  <!-- endbuild -->
   <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
