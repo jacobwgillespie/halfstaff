@@ -1,7 +1,10 @@
 import { output as pagespeed } from 'psi';
 import autoprefixer from 'gulp-autoprefixer';
 import babel from 'gulp-babel';
+import babelify from 'babelify';
+import browserify from 'browserify';
 import browserSync from 'browser-sync';
+import buffer from 'vinyl-buffer';
 import cache from 'gulp-cache';
 import concat from 'gulp-concat';
 import cssnano from 'gulp-cssnano';
@@ -19,11 +22,13 @@ import revCollector from 'gulp-rev-collector';
 import runSequence from 'run-sequence';
 import sass from 'gulp-sass';
 import size from 'gulp-size';
+import source from 'vinyl-source-stream';
 import sourcemaps from 'gulp-sourcemaps';
 import swPrecache from 'sw-precache';
 import uglify from 'gulp-uglify';
 import uncss from 'gulp-uncss';
 import useref from 'gulp-useref';
+import streamify from 'gulp-streamify';
 
 import pkg from './package.json';
 
@@ -98,14 +103,20 @@ gulp.task('styles', () => {
     .pipe(gulp.dest('dist/rev'));
 });
 
-gulp.task('scripts', () =>
-  gulp.src([
-    'app/scripts/main.js',
-  ])
-    .pipe(newer('.tmp/scripts'))
+gulp.task('scripts', () => {
+  const b = browserify({
+    entries: 'app/scripts/main.js',
+    debug: true,
+    transform: [babelify],
+  });
+
+  return b.bundle()
+    .pipe(source('main.js'))
+    .pipe(buffer())
+    // .pipe(streamify(newer('.tmp/scripts')))
     .pipe(sourcemaps.init())
-    .pipe(babel())
-    .pipe(sourcemaps.write())
+    // .pipe(babel())
+    // .pipe(sourcemaps.write())
     .pipe(gulp.dest('.tmp/scripts'))
     .pipe(concat('main.min.js'))
     .pipe(uglify({ preserveComments: 'some' }))
@@ -114,8 +125,8 @@ gulp.task('scripts', () =>
     .pipe(sourcemaps.write('.'))
     .pipe(gulp.dest('dist/scripts'))
     .pipe(rev.manifest('scripts.json'))
-    .pipe(gulp.dest('dist/rev'))
-);
+    .pipe(gulp.dest('dist/rev'));
+});
 
 gulp.task('html', () =>
   gulp.src(['dist/rev/**/*.json', 'app/generatedPages/**/*.html'])
