@@ -31,6 +31,7 @@
     "gulp-htmlmin": "^2.0.0",
     "gulp-if": "^2.0.1",
     "gulp-imagemin": "^3.0.1",
+    "gulp-load-plugins": "^1.2.4",
     "gulp-newer": "^1.2.0",
     "gulp-real-favicon": "^0.2.1",
     "gulp-rev": "^7.1.0",

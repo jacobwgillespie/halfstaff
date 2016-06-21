@@ -1,36 +1,20 @@
 import { output as pagespeed } from 'psi';
-import autoprefixer from 'gulp-autoprefixer';
-import babel from 'gulp-babel';
 import babelify from 'babelify';
 import browserify from 'browserify';
 import browserSync from 'browser-sync';
 import buffer from 'vinyl-buffer';
-import cache from 'gulp-cache';
-import concat from 'gulp-concat';
-import cssnano from 'gulp-cssnano';
 import del from 'del';
 import fs from 'fs';
 import gulp from 'gulp';
-import gulpIf from 'gulp-if';
-import htmlmin from 'gulp-htmlmin';
-import imagemin from 'gulp-imagemin';
-import newer from 'gulp-newer';
+import gulpLoadPlugins from 'gulp-load-plugins';
 import path from 'path';
-import realFavicon from 'gulp-real-favicon';
-import rev from 'gulp-rev';
-import revCollector from 'gulp-rev-collector';
 import runSequence from 'run-sequence';
-import sass from 'gulp-sass';
-import size from 'gulp-size';
 import source from 'vinyl-source-stream';
-import sourcemaps from 'gulp-sourcemaps';
 import swPrecache from 'sw-precache';
-import uglify from 'gulp-uglify';
-import uncss from 'gulp-uncss';
-import useref from 'gulp-useref';
-import streamify from 'gulp-streamify';
 
 import pkg from './package.json';
+
+const $ = gulpLoadPlugins();
 
 const FAVICON_DATA_FILE = 'faviconData.json';
 const ASSET_HOST = process.env.ASSET_HOST || '';
@@ -46,14 +30,14 @@ const dirReplacements = {
 
 gulp.task('images', () =>
   gulp.src('app/images/**/*')
-    .pipe(cache(imagemin({
+    .pipe($.cache($.imagemin({
       progressive: true,
       interlaced: true,
     })))
-    .pipe(rev())
+    .pipe($.rev())
     .pipe(gulp.dest('dist/images'))
-    .pipe(size({ title: 'images' }))
-    .pipe(rev.manifest('images.json'))
+    .pipe($.size({ title: 'images' }))
+    .pipe($.rev.manifest('images.json'))
     .pipe(gulp.dest('dist/rev'))
 );
 
@@ -65,12 +49,12 @@ gulp.task('copy', () =>
   ], {
     dot: true,
   })
-    .pipe(revCollector({
+    .pipe($.revCollector({
       replaceReved: true,
       dirReplacements,
     }))
     .pipe(gulp.dest('dist'))
-    .pipe(size({ title: 'copy' }))
+    .pipe($.size({ title: 'copy' }))
 );
 
 gulp.task('styles', () => {
@@ -80,26 +64,26 @@ gulp.task('styles', () => {
     'app/styles/**/*.scss',
     'app/styles/**/*.css',
   ])
-    .pipe(newer('.tmp/styles'))
-    .pipe(sourcemaps.init())
-    .pipe(sass({
+    .pipe($.newer('.tmp/styles'))
+    .pipe($.sourcemaps.init())
+    .pipe($.sass({
       precision: 10,
-    }).on('error', sass.logError))
+    }).on('error', $.sass.logError))
     // Remove any unused CSS
-    .pipe(gulpIf('*.css', uncss({
+    .pipe($.if('*.css', $.uncss({
       html: [
         'app/generatedPages/**/*.html',
       ],
     })))
-    .pipe(autoprefixer(AUTOPREFIXER_BROWSERS))
+    .pipe($.autoprefixer(AUTOPREFIXER_BROWSERS))
     .pipe(gulp.dest('.tmp/styles'))
     // Concatenate and minify styles
-    .pipe(gulpIf('*.css', cssnano()))
-    .pipe(rev())
-    .pipe(size({ title: 'styles' }))
-    .pipe(sourcemaps.write('./'))
+    .pipe($.if('*.css', $.cssnano()))
+    .pipe($.rev())
+    .pipe($.size({ title: 'styles' }))
+    .pipe($.sourcemaps.write('./'))
     .pipe(gulp.dest('dist/styles'))
-    .pipe(rev.manifest('styles.json'))
+    .pipe($.rev.manifest('styles.json'))
     .pipe(gulp.dest('dist/rev'));
 });
 
@@ -114,31 +98,31 @@ gulp.task('scripts', () => {
     .pipe(source('main.js'))
     .pipe(buffer())
     // .pipe(streamify(newer('.tmp/scripts')))
-    .pipe(sourcemaps.init())
+    .pipe($.sourcemaps.init())
     // .pipe(babel())
-    // .pipe(sourcemaps.write())
+    // .pipe($.sourcemaps.write())
     .pipe(gulp.dest('.tmp/scripts'))
-    .pipe(concat('main.min.js'))
-    .pipe(uglify({ preserveComments: 'some' }))
-    .pipe(rev())
-    .pipe(size({ title: 'scripts' }))
-    .pipe(sourcemaps.write('.'))
+    .pipe($.concat('main.min.js'))
+    .pipe($.uglify({ preserveComments: 'some' }))
+    .pipe($.rev())
+    .pipe($.size({ title: 'scripts' }))
+    .pipe($.sourcemaps.write('.'))
     .pipe(gulp.dest('dist/scripts'))
-    .pipe(rev.manifest('scripts.json'))
+    .pipe($.rev.manifest('scripts.json'))
     .pipe(gulp.dest('dist/rev'));
 });
 
 gulp.task('html', () =>
   gulp.src(['dist/rev/**/*.json', 'app/generatedPages/**/*.html'])
-    .pipe(useref({
+    .pipe($.useref({
       searchPath: '{.tmp,app}',
       noAssets: true,
     }))
-    .pipe(revCollector({
+    .pipe($.revCollector({
       replaceReved: true,
       dirReplacements,
     }))
-    .pipe(gulpIf('*.html', htmlmin({
+    .pipe($.if('*.html', $.htmlmin({
       removeComments: true,
       collapseWhitespace: true,
       collapseBooleanAttributes: true,
@@ -149,7 +133,7 @@ gulp.task('html', () =>
       removeStyleLinkTypeAttributes: true,
       removeOptionalTags: true,
     })))
-    .pipe(gulpIf('*.html', size({ title: 'html', showFiles: true })))
+    .pipe($.if('*.html', $.size({ title: 'html', showFiles: true })))
     .pipe(gulp.dest('dist'))
 );
 
@@ -236,7 +220,7 @@ gulp.task('generate-service-worker', ['copy-sw-scripts'], () => {
 // you should run it whenever RealFaviconGenerator updates its
 // package (see the check-for-favicon-update task below).
 gulp.task('generate-icons', (done) => {
-  realFavicon.generateFavicon({
+  $.realFavicon.generateFavicon({
     masterPicture: 'app/images/icon.svg',
     dest: 'app/images/icons/',
     iconsPath: '/images/icons/',
@@ -287,7 +271,7 @@ gulp.task('generate-icons', (done) => {
 // continuous integration system.
 gulp.task('check-for-favicon-update', (done) => {
   const currentVersion = JSON.parse(fs.readFileSync(FAVICON_DATA_FILE)).version;
-  realFavicon.checkForUpdates(currentVersion, (err) => {
+  $.realFavicon.checkForUpdates(currentVersion, (err) => {
     if (err) {
       throw err;
     }
