@@ -1,27 +1,32 @@
 <% extend 'layout.ect' %>
 
-<% include 'flag.ect' %>
+<%
+@title = "#{@moment.tz(@data.date, 'America/New_York').format('LL')} - #{@data.cleanTitle}";
+@description = @trunc("The flag is at half staff. #{@data.firstLine}", 150);
+%>
+
+<us-flag staff="<%- if @halfstaff then 'half' else 'full' %>" class="flag"></us-flag>
 
 <div class="cards">
   <div class="card">
     <div class="title">
-      <h3><%- @moment.tz(@potus.date, 'America/New_York').format('LL') %></h3>
-      <h2><%- @potus.cleanTitle %></h2>
+      <h3><%- @moment.tz(@data.date, 'America/New_York').format('LL') %></h3>
+      <h2><%- @data.cleanTitle %></h2>
     </div>
     <div class="text">
-      <%- @trunc(@potus.firstLine, 600) %>
+      <%- @trunc(@data.firstLine, 600) %>
     </div>
     <div class="meta">
       <div class="time">
         <div class="label">Start</div>
-        <div><time><%= @moment.tz(@potus.tags.startDate, 'America/New_York').format('LL') %></time></div>
+        <div><time><%= @moment.tz(@data.tags.startDate, 'America/New_York').format('LL') %></time></div>
       </div>
-      <% if @potus.tags.endDate : %>
+      <% if @data.tags.endDate : %>
       <div class="time">
         <div class="label">End</div>
         <div>
-          <time><%= @moment.tz(@potus.tags.endDate, 'America/Los_Angeles').format('LL') %></time>
-          <% switch @potus.tags.endTime : %>
+          <time><%= @moment.tz(@data.tags.endDate, 'America/Los_Angeles').format('LL') %></time>
+          <% switch @data.tags.endTime : %>
             <% when 'noon': %>
               until noon
             <% end %>
@@ -31,7 +36,7 @@
           <% end %>
         </div>
       </div>
-      <% else if @potus.tags.type == 'interment' : %>
+      <% else if @data.tags.type == 'interment' : %>
       <div class="time">
         <div class="label">End</div>
         <div>The day of interment</div>
@@ -39,7 +44,7 @@
       <% end %>
     </div>
     <div class="actions">
-      <a class="more-info" href="<%- @potus.url %>" target="_blank">
+      <a class="more-info" href="<%- @data.url %>" target="_blank">
         More Information
       </a>
     </div>

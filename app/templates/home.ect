@@ -1,6 +1,11 @@
 <% extend 'layout.ect' %>
 
-<% include 'flag.ect' %>
+<%
+  @title = if @halfstaff then 'The flag is at half staff' else 'The flag is at full staff'
+  @description = @trunc(@halfstaff ? "#{title}. #{@current[0].firstLine}" : "#{title}. Browse recent flag notices and read about flag etiquette.", 150)
+%>
+
+<us-flag staff="<%- if @halfstaff then 'half' else 'full' %>" class="flag"></us-flag>
 
 <div class="cards">
   <% for potus in @current : %>

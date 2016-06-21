@@ -38,19 +38,31 @@
   <meta name="theme-color" content="#263238">
 
   <link href="https://fonts.googleapis.com/css?family=Cairo:300,400,600,700" rel="stylesheet">
-  <link rel="stylesheet" href="/styles/style.css">
+  <!-- <link rel="stylesheet" href="/styles/style.css"> -->
+
+  <!-- build:js /bower_components/webcomponentsjs/webcomponents-lite.min.js -->
+  <script src="/bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+  <!-- endbuild -->
+
+  <link rel="import" href="/elements/elements.html">
 </head>
-<body class="<% if @halfstaff: %>halfstaff<% else : %>fullstaff<% end %>">
-  <header class="header">
-    <a class="title" href="/"><small>currently at</small><br><% if @currentHalfstaff: %>Half Staff<% else : %>Full Staff<% end %></a>
-    <ul class="menu">
-      <li><a href="/about/">About</a></li>
-      <li class="sms-link"><a href="/notifications/">SMS Notifications</a></li>
-    </ul>
-  </header>
-  <main class="main">
-    <% content %>
-  </main>
+<body class="<% if @halfstaff: %>halfstaff<% else : %>fullstaff<% end %>" unresolved>
+  <!-- build:remove -->
+  <span id="browser-sync-binding"></span>
+  <!-- endbuild -->
+
+  <template is="dom-bind" id="app">
+    <header class="header">
+      <a class="title" href="/"><small>currently at</small><br><% if @currentHalfstaff: %>Half Staff<% else : %>Full Staff<% end %></a>
+      <ul class="menu">
+        <li><a href="/about/">About</a></li>
+        <li class="sms-link"><a href="/notifications/">SMS Notifications</a></li>
+      </ul>
+    </header>
+    <main class="main">
+      <% content %>
+    </main>
+  </template>
 
   <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
   <script>

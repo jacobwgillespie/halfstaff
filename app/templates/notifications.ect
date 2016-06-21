@@ -1,6 +1,14 @@
 <% extend 'layout.ect' %>
 
-<% include 'flag.ect' %>
+<%
+@title = 'SMS Notifications'
+@description = @trunc(
+  'Have a flag? Receive flag notices via SMS and know when to lower to half-staff',
+  150
+)
+%>
+
+<us-flag staff="<%- if @halfstaff then 'half' else 'full' %>" class="flag"></us-flag>
 
 <div class="cards">
   <div class="card recent">
@@ -12,11 +20,7 @@
         Receive flag notifications via SMS
       </p>
 
-      <div class="mdl-textfield mdl-js-textfield">
-        <input class="mdl-textfield__input" type="text" id="phone">
-        <label class="mdl-textfield__label" for="phone">Phone number</label>
-      </div>
-      <button>Submit</button>
+      <gold-phone-input label="phone number"></gold-phone-input>
     </div>
   </div>
 </div>

@@ -1,6 +1,7 @@
-.tmp/
-*.log
-app/generatedPages
-data/potus.json
-dist/
 node_modules
+dist
+bower_components
+.tmp
+
+*.log
+data/potus.json

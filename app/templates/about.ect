@@ -1,6 +1,14 @@
 <% extend 'layout.ect' %>
 
-<% include 'flag.ect' %>
+<%
+  @title = 'About'
+  @description = @trunc(
+    'Browse recent flag notices and read about flag etiquette.',
+    150
+  )
+%>
+
+<us-flag staff="<%- if @halfstaff then 'half' else 'full' %>" class="flag"></us-flag>
 
 <div class="cards">
   <div class="card recent">
@@ -8,6 +16,16 @@
       <h3>About</h3>
     </div>
     <div class="text">
+
+    </div>
+  </div>
+
+  <style is="custom-style">
+    /*.card-header { @apply(--paper-font-headline); }*/
+  </style>
+
+  <paper-card heading="About">
+    <div class="card-content">
       <p>
         Half Staff displays the current US flag status in a clean, simple format and allows for
         browsing past flag notices.  It automatically reads the
@@ -23,5 +41,5 @@
 
       <p>The website is copyright &copy; 2016 <a href="https://jacobwgillespie.com">Jacob Gillespie</a>.  All rights reserved.</p>
     </div>
-  </div>
+  </paper-card>
 </div>
