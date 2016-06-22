@@ -55,6 +55,7 @@ gulp.task('templates:potus', () =>
       template: 'potus.ect',
       helpers: {
         ...helpers,
+        halfstaff: true,
         currentHalfstaff: halfstaff,
       },
       rewritePath,

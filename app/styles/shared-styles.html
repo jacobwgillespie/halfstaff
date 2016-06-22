@@ -1,0 +1,227 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+
+<dom-module id="shared-styles">
+  <template>
+    <style>
+    body {
+      font-family: 'Cairo', sans-serif;
+      overflow-x: hidden;
+    }
+
+    body.fullstaff {
+      background-color: #263238;
+      animation: fullstaffColorChange 2s 0s ease 1 forwards;
+    }
+
+    body.halfstaff {
+      background-color: #B0BEC5;
+      animation: halfstaffColorChange 4s 0s ease 1 forwards;
+    }
+
+    @keyframes halfstaffColorChange {
+      0% {
+        background-color: #B0BEC5;
+      }
+      100% {
+        background-color: #263238;
+      }
+    }
+
+    @keyframes fullstaffColorChange {
+      0% {
+        background-color: #263238;
+      }
+      100% {
+        background-color: #B0BEC5;
+      }
+    }
+
+    .header {
+      height: 24px;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      box-sizing: border-box;
+      padding: 2em;
+      margin-bottom: 2em;
+    }
+
+    .header a {
+      color: #fff;
+      text-decoration: none;
+    }
+
+    .header .title {
+      font-size: 2em;
+      font-weight: 300;
+      line-height: 1em;
+    }
+
+    .header .title small {
+      font-size: 16px;
+      line-height: 18px;
+    }
+
+    .header ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: flex;
+      flex-direction: row;
+      margin-right: -1em;
+    }
+
+    .header ul li {
+      margin: 0;
+      padding: 6px;
+      margin-right: 1em;
+    }
+
+    .center { text-align: center; }
+
+    .main {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      min-height: 90vh;
+      margin: 0;
+      margin-right: -10vw;
+
+      box-sizing: border-box;
+      padding: 1em;
+      margin-top: 0;
+    }
+
+    .flag, .cards {
+      margin-right: 10vw;
+    }
+
+    .flag {
+      width: 150px;
+    }
+
+    .cards {
+      margin-top: -80px;
+    }
+
+    .card {
+      max-width: 440px;
+      background-color: #fff;
+      padding: 6px;
+      border-radius: 2px;
+      box-sizing: border-box;
+      font-size: 16px;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12);
+      margin-bottom: 2em;
+    }
+
+    .card .title,
+    .card .text,
+    .card .meta,
+    .card .actions {
+      padding: 16px;
+    }
+
+    .card .title h3 {
+      font-weight: 700;
+      line-height: 1em;
+    }
+
+    .card .title h2 {
+      font-size: 24px;
+      font-weight: 300;
+      margin: 0;
+      padding: 0;
+      line-height: 1em;
+    }
+
+    .card .title h2 a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .card .text,
+    .card .meta {
+      font-size: 14px;
+      line-height: 18px;
+      font-weight: 400;
+      width: 90%;
+      color: rgba(0,0,0,.54);
+    }
+
+    .card .text p {
+      margin-bottom: 1em;
+    }
+
+    .card .text p:last-child {
+      margin-bottom: 0;
+    }
+
+    .card .text a {
+      color: #01579B
+    }
+
+    .card .meta .time {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+    }
+
+    .card .meta .time div {
+      flex: 1 0 50%;
+    }
+
+    .card .meta .time .label {
+      font-weight: 700;
+    }
+
+    .card .actions a {
+      color: #01579B;
+      text-decoration: none;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+
+    .recent .recent-notice {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      margin-bottom: 1em;
+    }
+
+    .recent .recent-notice a {
+      font-weight: 300;
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .recent .recent-notice small {
+      text-align: right;
+      /*min-width: 100px;*/
+      white-space: nowrap;
+      padding-left: 1em;
+    }
+
+    @media screen and (min-width: 750px) {
+      .main {
+        flex-direction: row;
+        padding: 0;
+        margin-top: 20vh;
+        align-items: flex-start;
+      }
+
+      .flag {
+        width: 200px;
+      }
+
+      .cards {
+        margin-top: 0;
+      }
+    }
+    </style>
+  </template>
+</dom-module>

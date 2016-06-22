@@ -5,7 +5,7 @@ gulp.task('default', ['clean'], cb =>
   runSequence(
     'images',
     ['styles', 'scripts'],
-    ['html', 'copy'],
+    ['html', 'copy', 'vulcanize'],
     'generate-service-worker',
     cb
   )
