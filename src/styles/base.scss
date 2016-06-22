@@ -1,5 +1,3 @@
-// @import 'textfield';
-
 html {
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
@@ -110,73 +108,11 @@ button {
   padding: 0;
 }
 
-
-// ******
-// Custom
-// ******
-
-
-
-// Flag
-
-.cls-1 {
-  fill: #c03a2b;
-}
-.cls-2 {
-  fill: #d1d4d1;
-}
-.cls-3 {
-  fill: #556080;
-}
-.cls-4 {
-  fill: #0096e6;
-}
-.cls-5 {
-  fill: #8697cb;
-}
-.cls-6 {
-  fill: #285680;
-}
-.cls-7 {
-  fill: #fff;
-}
-.cls-8 {
-  fill: #f0c419;
-}
-.cls-9 {
-  fill: #701919;
-}
-.cls-10 {
-  fill: #ecf0f1;
-}
-.cls-11 {
-  fill: #e64c3c;
+html, body {
+  margin: 0;
+  padding: 0;
 }
 
-.halfstaff .banner {
-  transform: translateY(0px);
-  animation: halfstaff 4s 0s ease 1 forwards;
-}
-
-.fullstaff .banner {
-  transform: translateY(80px);
-  animation: fullstaff 2s 0s ease 1 forwards;
-}
-
-@keyframes halfstaff {
-  0% {
-    transform: translateY(0px);
-  }
-  100% {
-    transform: translateY(40px);
-  }
-}
-
-@keyframes fullstaff {
-  0% {
-    transform: translateY(80px);
-  }
-  100% {
-    transform: translateY(0px);
-  }
+body {
+  font-family: 'Cairo', sans-serif;
 }

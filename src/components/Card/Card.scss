@@ -1,0 +1,79 @@
+.card {
+  max-width: 440px;
+  background-color: #fff;
+  padding: 6px;
+  border-radius: 2px;
+  box-sizing: border-box;
+  font-size: 16px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12);
+  margin-bottom: 2em;
+}
+
+.card .title,
+.card .text,
+.card .meta,
+.card .actions {
+  padding: 16px;
+}
+
+.card .title h3 {
+  font-weight: 700;
+  line-height: 1em;
+}
+
+.card .title h2 {
+  font-size: 24px;
+  font-weight: 300;
+  margin: 0;
+  padding: 0;
+  line-height: 1em;
+}
+
+.card .title h2 a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.card .text,
+.card .meta {
+  font-size: 14px;
+  line-height: 18px;
+  font-weight: 400;
+  width: 90%;
+  color: rgba(0,0,0,.54);
+}
+
+.card .text p {
+  margin-bottom: 1em;
+}
+
+.card .text p:last-child {
+  margin-bottom: 0;
+}
+
+.card .text a {
+  color: #01579B
+}
+
+.card .meta .time {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.card .meta .time div {
+  flex: 1 0 50%;
+}
+
+.card .meta .time .label {
+  font-weight: 700;
+}
+
+.card .actions a {
+  color: #01579B;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-weight: 600;
+}
