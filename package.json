@@ -57,6 +57,7 @@
     "gulp-util": "^3.0.7",
     "gulp-vulcanize": "^6.1.0",
     "hashids": "^1.0.2",
+    "isomorphic-fetch": "^2.2.1",
     "knwl.js": "^1.0.2",
     "material-ui": "^0.15.1",
     "moment": "^2.13.0",

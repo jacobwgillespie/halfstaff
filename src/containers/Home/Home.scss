@@ -1,0 +1,19 @@
+.recentNotice {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 1em;
+}
+
+.recentNotice a {
+  font-weight: 300;
+  color: inherit;
+  text-decoration: none;
+}
+
+.recentNotice small {
+  text-align: right;
+  /*min-width: 100px;*/
+  white-space: nowrap;
+  padding-left: 1em;
+}

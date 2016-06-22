@@ -1,9 +1,13 @@
 import { applyMiddleware, combineReducers, compose, createStore } from 'redux';
 import thunk from 'redux-thunk';
 
+import { reducer as currentlyLowered } from './modules/currentlyLowered';
+import { reducer as pageLowered } from './modules/pageLowered';
 import { reducer as potus } from './modules/potus';
 
 const rootReducer = combineReducers({
+  currentlyLowered,
+  pageLowered,
   potus,
 });
 

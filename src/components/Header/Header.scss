@@ -30,8 +30,14 @@
   padding: 0;
   list-style: none;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   margin-right: -1em;
+}
+
+@media screen and (min-width: 750px) {
+  .header ul {
+    flex-direction: row;
+  }
 }
 
 .header ul li {

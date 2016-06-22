@@ -15,14 +15,43 @@ import routes from './routes';
 import assets from '../dist/assets.json';
 import icons from '../dist/icons.json';
 
+import recent from '../data/recent.json';
+
+const buildInitialState = () => {
+  const initialState = {
+    potus: {
+      recent: [],
+      notices: {},
+    },
+  };
+
+  recent.forEach(notice => {
+    initialState.potus.recent.push(notice.id);
+    initialState.potus.notices[notice.id] = notice;
+  });
+
+  return initialState;
+};
+
 const assetHost = process.env.ASSET_HOST || '';
+
+const prefetchData = (renderProps, store) => {
+  const { components, params } = renderProps;
+  const { getState, dispatch } = store;
+
+  return components
+    .filter(component => component)
+    .filter(component => component.fetchData)
+    .map(component => component.fetchData)
+    .map(fetchData => fetchData(getState(), dispatch, params));
+};
 
 const app = express();
 
 app.use('/', express.static(path.join(__dirname, '..', 'dist')));
 
 app.use((req, res) => {
-  const initialState = {};
+  const initialState = buildInitialState();
 
   const memoryHistory = createMemoryHistory(req.path);
   const store = configureStore(memoryHistory, initialState);
@@ -44,32 +73,36 @@ app.use((req, res) => {
       return;
     }
 
-    const theme = getMuiTheme({}, {
-      userAgent: req.headers['user-agent'],
-    });
+    const render = () => {
+      const theme = getMuiTheme({}, {
+        userAgent: req.headers['user-agent'],
+      });
 
-    const content = renderToString(
-      <Provider store={store}>
-        <MuiThemeProvider muiTheme={theme}>
-          <RouterContext {...renderProps} />
-        </MuiThemeProvider>
-      </Provider>,
-    );
+      const content = renderToString(
+        <Provider store={store}>
+          <MuiThemeProvider muiTheme={theme}>
+            <RouterContext {...renderProps} />
+          </MuiThemeProvider>
+        </Provider>,
+      );
 
-    const head = Helmet.rewind();
+      const head = Helmet.rewind();
 
-    const html = renderToStaticMarkup(
-      <Html
-        assetHost={assetHost}
-        assets={assets}
-        body={content}
-        head={head}
-        icons={icons}
-        store={store}
-      />
-    );
+      const html = renderToStaticMarkup(
+        <Html
+          assetHost={assetHost}
+          assets={assets}
+          body={content}
+          head={head}
+          icons={icons}
+          store={store}
+        />
+      );
 
-    res.send(`<!doctype html>${html}`);
+      res.send(`<!doctype html>${html}`);
+    };
+
+    Promise.all(prefetchData(renderProps, store)).then(render, render);
   });
 });
 

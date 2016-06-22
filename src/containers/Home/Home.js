@@ -1,30 +1,54 @@
-import React from 'react';
+import { connect } from 'react-redux';
+import { Link } from 'react-router';
+import moment from 'moment';
+import React, { Component, PropTypes } from 'react';
 
+import 'moment-timezone';
+
+import { resetPageFlag } from '../../redux/modules/pageLowered';
 import Card from '../../components/Card';
 import Cards from '../../components/Cards';
-import FlagContainer from '../../components/FlagContainer';
 
-export default function Home() {
-  return (
-    <FlagContainer lowered>
+import styles from './Home.scss';
+
+export class Home extends Component {
+  static propTypes = {
+    recent: PropTypes.array,
+    dispatch: PropTypes.func,
+  }
+
+  componentWillMount() {
+    const { dispatch } = this.props;
+    dispatch(resetPageFlag());
+  }
+
+  render() {
+    const { recent } = this.props;
+
+    return (
       <Cards>
-        <Card title="About">
-          <p>
-            Half Staff displays the current US flag status in a clean, simple format and allows for
-            browsing past flag notices.  It automatically reads the
-            <a href="https://www.whitehouse.gov/briefing-room/presidential-actions/proclamations">President's proclamations</a>
-            looking for flag orders and reads the duration and surrounding details.  Half Staff also
-            works on iOS and Android via add-to-homescreen.
-          </p>
-
-          <p>
-            More technical details and the website's source code can be found on
-            <a href="https://github.com/jacobwgillespie/halfstaff">GitHub</a>.  Contributions are welcome.
-          </p>
-
-          <p>The website is copyright &copy; 2016 <a href="https://jacobwgillespie.com">Jacob Gillespie</a>.  All rights reserved.</p>
+        <Card
+          subtitle="Recent Notices"
+          actions={
+            <Link to="/notifications/">
+              Receive notifications
+            </Link>
+          }
+        >
+          {recent.map(notice => (
+            <div className={styles.recentNotice} key={notice.id}>
+              <Link to={`/${notice.id}/`}>{notice.cleanTitle}</Link>
+              <small>{moment.tz(notice.tags.startDate, 'America/New_York').format('LL')}</small>
+            </div>
+          ))}
         </Card>
       </Cards>
-    </FlagContainer>
-  );
+    );
+  }
 }
+
+const mapStateToProps = ({ potus }) => ({
+  recent: potus.recent.map(id => potus.notices[id]).filter(notice => notice),
+});
+
+export default connect(mapStateToProps)(Home);
