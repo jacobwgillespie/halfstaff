@@ -1,4 +1,5 @@
 import { connect } from 'react-redux';
+import Helmet from 'react-helmet';
 import moment from 'moment';
 import React, { Component, PropTypes } from 'react';
 
@@ -44,7 +45,7 @@ export class Notice extends Component {
     const { dispatch, notice, params } = this.props;
     const state = {
       notices: {
-        notices: {
+        store: {
           [params.id]: notice,
         },
       },
@@ -94,8 +95,19 @@ export class Notice extends Component {
 
     const text = trunc(notice.firstLine, 600);
 
+    const date = moment.tz(notice.date, 'America/New_York').format('LL');
+    const title = `${date} - ${notice.cleanTitle}`;
+    const description = trunc(`The flag is at half staff. ${notice.firstLine}`, 150);
+
     return (
       <Cards>
+        <Helmet
+          title={title}
+          meta={[
+            { name: 'description', content: description },
+          ]}
+        />
+
         <Card
           title={notice.cleanTitle}
           subtitle={moment.tz(notice.date, 'America/New_York').format('LL')}

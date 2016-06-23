@@ -1,7 +1,9 @@
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
+import Helmet from 'react-helmet';
 import moment from 'moment';
 import React, { Component, PropTypes } from 'react';
+import truncate from 'truncate';
 
 import 'moment-timezone';
 
@@ -13,8 +15,9 @@ import styles from './Home.scss';
 
 export class Home extends Component {
   static propTypes = {
-    recent: PropTypes.array,
+    currentlyLowered: PropTypes.bool,
     dispatch: PropTypes.func,
+    recent: PropTypes.array,
   }
 
   componentWillMount() {
@@ -23,10 +26,26 @@ export class Home extends Component {
   }
 
   render() {
-    const { recent } = this.props;
+    const { currentlyLowered, recent } = this.props;
+
+    const title = currentlyLowered
+      ? 'The flag is at half staff'
+      : 'The flag is at full staff';
+    const description = truncate(
+      currentlyLowered
+        ? `${title}. ${recent[0].firstLine}`
+        : `${title}. Browse recent flag notices and read about flag etiquette.`,
+        150
+    );
 
     return (
       <Cards>
+        <Helmet
+          title={title}
+          meta={[
+            { name: 'description', content: description },
+          ]}
+        />
         <Card
           subtitle="Recent Notices"
           actions={
@@ -47,7 +66,8 @@ export class Home extends Component {
   }
 }
 
-const mapStateToProps = ({ notices }) => ({
+const mapStateToProps = ({ currentlyLowered, notices }) => ({
+  currentlyLowered,
   recent: notices.recent.map(
     id => notices.store[id]
   ).filter(
