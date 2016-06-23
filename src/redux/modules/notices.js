@@ -12,7 +12,7 @@ export function noticeLoaded(payload) {
 }
 
 export function fetchNotice(id) {
-  const uri = `${API_HOST}/master/data/potus/${id}.json`;
+  const uri = `${API_HOST}/master/data/notices/${id}.json`;
   return dispatch => fetch(uri).then(
     res => res.json()
   ).then(

@@ -19,15 +19,15 @@ import recent from '../data/recent.json';
 
 const buildInitialState = () => {
   const initialState = {
-    potus: {
+    notices: {
       recent: [],
-      notices: {},
+      store: {},
     },
   };
 
   recent.forEach(notice => {
-    initialState.potus.recent.push(notice.id);
-    initialState.potus.notices[notice.id] = notice;
+    initialState.notices.recent.push(notice.id);
+    initialState.notices.store[notice.id] = notice;
   });
 
   return initialState;

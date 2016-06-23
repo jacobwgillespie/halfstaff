@@ -47,8 +47,12 @@ export class Home extends Component {
   }
 }
 
-const mapStateToProps = ({ potus }) => ({
-  recent: potus.recent.map(id => potus.notices[id]).filter(notice => notice),
+const mapStateToProps = ({ notices }) => ({
+  recent: notices.recent.map(
+    id => notices.store[id]
+  ).filter(
+    notice => notice
+  ),
 });
 
 export default connect(mapStateToProps)(Home);

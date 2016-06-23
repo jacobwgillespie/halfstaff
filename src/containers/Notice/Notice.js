@@ -4,12 +4,12 @@ import React, { Component, PropTypes } from 'react';
 
 import 'moment-timezone';
 
-import { fetchNotice } from '../../redux/modules/potus';
+import { fetchNotice } from '../../redux/modules/notices';
 import { lowerPageFlag } from '../../redux/modules/pageLowered';
 import Card from '../../components/Card';
 import Cards from '../../components/Cards';
 
-import styles from './Potus.scss';
+import styles from './Notice.scss';
 
 const trunc = (string, n, useWordBoundary = true) => {
   const isTooLong = string.length > n;
@@ -23,7 +23,7 @@ const trunc = (string, n, useWordBoundary = true) => {
   return isTooLong ? `${shortenedString.replace(/\s[\w.]+\s*$/, '')}&hellip;` : shortenedString;
 };
 
-export class Potus extends Component {
+export class Notice extends Component {
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
     notice: PropTypes.object,
@@ -31,7 +31,7 @@ export class Potus extends Component {
   }
 
   static fetchData(state, dispatch, params) {
-    if (!state.potus.notices[params.id]) {
+    if (!state.notices.store[params.id]) {
       return fetchNotice(params.id)(dispatch);
     }
 
@@ -43,7 +43,7 @@ export class Potus extends Component {
   componentWillMount() {
     const { dispatch, notice, params } = this.props;
     const state = {
-      potus: {
+      notices: {
         notices: {
           [params.id]: notice,
         },
@@ -111,8 +111,8 @@ export class Potus extends Component {
   }
 }
 
-const mapStateToProps = ({ potus }, { params }) => ({
-  notice: potus.notices[params.id],
+const mapStateToProps = ({ notices }, { params }) => ({
+  notice: notices.store[params.id],
 });
 
-export default connect(mapStateToProps)(Potus);
+export default connect(mapStateToProps)(Notice);
