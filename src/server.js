@@ -46,11 +46,7 @@ const prefetchData = (renderProps, store) => {
     .map(fetchData => fetchData(getState(), dispatch, params));
 };
 
-const app = express();
-
-app.use('/', express.static(path.join(__dirname, '..', 'dist')));
-
-app.use((req, res) => {
+const handleReactRequest = (req, cb) => {
   const initialState = buildInitialState();
 
   const memoryHistory = createMemoryHistory(req.path);
@@ -59,19 +55,20 @@ app.use((req, res) => {
 
   match({ history, routes, location: req.url }, (error, redirectLocation, renderProps) => {
     if (error) {
-      res.status(500).send(error.message);
+      cb(500, null, error.message);
       return;
     }
 
     if (redirectLocation) {
-      res.redirect(302, `${redirectLocation.pathname}${redirectLocation.search}`);
+      cb(302, `${redirectLocation.pathname}${redirectLocation.search}`);
       return;
     }
 
     if (!renderProps) {
-      res.status(404).send('Not found');
+      cb(404, null, 'Not found');
       return;
     }
+
 
     const render = () => {
       const theme = getMuiTheme({}, {
@@ -99,11 +96,35 @@ app.use((req, res) => {
         />
       );
 
-      res.send(`<!doctype html>${html}`);
+      cb(200, null, `<!doctype html>${html}`);
     };
 
     Promise.all(prefetchData(renderProps, store)).then(render, render);
   });
+};
+
+export const app = express();
+
+app.use('/', express.static(path.join(__dirname, '..', 'dist')));
+
+app.use((req, res) => {
+  handleReactRequest(req, (code, location, content) => {
+    if (location) return res.redirect(code, location);
+
+    if (code) res.code(code);
+
+    return res.send(content);
+  });
 });
 
 export default app;
+
+export function staticRender(req, cb) {
+  handleReactRequest(req, (code, location, content) => {
+    if (code !== 200) {
+      return cb(new Error(`Render error: ${code}`));
+    }
+
+    return cb(null, content);
+  });
+}

@@ -7,7 +7,8 @@
     "start": "bin/server",
     "tail": "forever logs -f 0",
     "test": "npm run lint",
-    "watch": "npm run build -- --watch"
+    "watch": "npm run build -- --watch",
+    "static": "babel-node support/build-static-html.js"
   },
   "author": "Jacob Gillespie <jacobwgillespie@gmail.com>",
   "license": "MIT",
