@@ -1,9 +1,9 @@
 import Helmet from 'react-helmet';
 import React from 'react';
-import TextField from 'material-ui/TextField';
 
 import Card from '../../components/Card';
 import Cards from '../../components/Cards';
+import TextMessageNotifications from '../../components/TextMessageNotifications';
 
 export default function Notifications() {
   const title = 'Notifications';
@@ -20,13 +20,16 @@ export default function Notifications() {
 
       <Card title="Notifications">
         <p>
-          Do you fly an American flag?  Would you like to receive a text message notifying you
-          when to lower your flag?
+          Receive a text message notification when the US flag is lowered.
         </p>
 
-        <p>$1.99 / year</p>
+        <p>
+          <strong>$1.99 per year</strong>
+        </p>
+      </Card>
 
-        <TextField hintText="123-456-7890" floatingLabelText="Phone Number" />
+      <Card>
+        <TextMessageNotifications />
       </Card>
     </Cards>
   );

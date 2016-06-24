@@ -26,6 +26,6 @@ Card.propTypes = {
   actions: PropTypes.node,
   children: PropTypes.node,
   meta: PropTypes.node,
-  subtitle: PropTypes.string,
-  title: PropTypes.string,
+  subtitle: PropTypes.node,
+  title: PropTypes.node,
 };
