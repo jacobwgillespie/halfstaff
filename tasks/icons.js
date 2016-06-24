@@ -2,7 +2,7 @@ import fs from 'fs';
 import gulp from 'gulp';
 import realFavicon from 'gulp-real-favicon';
 
-const FAVICON_DATA_FILE = 'faviconData.json';
+const FAVICON_DATA_FILE = 'src/faviconData.json';
 
 // Generate the icons. This task takes a few seconds to complete.
 // You should run it at least once to create the icons. Then,

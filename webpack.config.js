@@ -92,7 +92,7 @@ const clientConfig = Object.assign({}, baseConfig, {
     new webpack.optimize.OccurrenceOrderPlugin(),
     new ExtractTextPlugin(DEV ? 'style.css' : 'style.[hash].css', { allChunks: true }),
     new FaviconsWebpackPlugin({
-      logo: 'src/icon.png',
+      logo: 'src/images/icon.png',
       emitStats: true,
       statsFilename: 'icons.json',
     }),
