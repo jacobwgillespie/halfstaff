@@ -2,6 +2,7 @@ import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
 import moment from 'moment';
 import React, { Component, PropTypes } from 'react';
+import truncate from 'truncate';
 
 import 'moment-timezone';
 
@@ -11,18 +12,6 @@ import Card from '../../components/Card';
 import Cards from '../../components/Cards';
 
 import styles from './Notice.scss';
-
-const trunc = (string, n, useWordBoundary = true) => {
-  const isTooLong = string.length > n;
-  let shortenedString = isTooLong
-    ? string.substr(0, n - 1)
-    : string;
-  shortenedString = (useWordBoundary && isTooLong)
-    ? shortenedString.substr(0, shortenedString.lastIndexOf(' '))
-    : shortenedString;
-
-  return isTooLong ? `${shortenedString.replace(/\s[\w.]+\s*$/, '')}&hellip;` : shortenedString;
-};
 
 export class Notice extends Component {
   static propTypes = {
@@ -93,11 +82,11 @@ export class Notice extends Component {
       );
     }
 
-    const text = trunc(notice.firstLine, 600);
+    const text = truncate(notice.firstLine, 600);
 
     const date = moment.tz(notice.date, 'America/New_York').format('LL');
     const title = `${date} - ${notice.cleanTitle}`;
-    const description = trunc(`The flag is at half staff. ${notice.firstLine}`, 150);
+    const description = truncate(`The flag is at half staff. ${notice.firstLine}`, 150);
 
     return (
       <Cards>
