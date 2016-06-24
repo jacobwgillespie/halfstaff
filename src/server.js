@@ -96,7 +96,7 @@ const handleReactRequest = (req, cb) => {
         />
       );
 
-      cb(200, null, `<!doctype html>${html}`);
+      cb(null, null, `<!doctype html>${html}`);
     };
 
     Promise.all(prefetchData(renderProps, store)).then(render, render);
@@ -111,9 +111,10 @@ app.use((req, res) => {
   handleReactRequest(req, (code, location, content) => {
     if (location) return res.redirect(code, location);
 
-    if (code) res.code(code);
+    if (code) res.code(code).send(content);
+    else res.send(content);
 
-    return res.send(content);
+    return null;
   });
 });
 
@@ -121,7 +122,7 @@ export default app;
 
 export function staticRender(req, cb) {
   handleReactRequest(req, (code, location, content) => {
-    if (code !== 200) {
+    if (code && code !== 200) {
       return cb(new Error(`Render error: ${code}`));
     }
 
