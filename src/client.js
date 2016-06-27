@@ -11,6 +11,7 @@ import React from 'react';
 import useScroll from 'react-router-scroll';
 
 import { configureStore } from './redux/store';
+import muiTheme from './styles/muiTheme';
 import routes from './routes';
 
 const start = () => {
@@ -20,7 +21,7 @@ const start = () => {
 
   match({ history: browserHistory, routes }, (error, redirectLocation, renderProps) => {
     render(
-      <MuiThemeProvider muiTheme={getMuiTheme()}>
+      <MuiThemeProvider muiTheme={getMuiTheme(muiTheme)}>
         <Provider store={store}>
           <Router
             {...renderProps}

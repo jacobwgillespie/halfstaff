@@ -59,11 +59,11 @@ export default class PhoneInput extends Component {
         floatingLabelFixed
         floatingLabelText="Phone Number"
         onChange={this.onChange}
+        id="phone"
       >
         <InputMask
           mask="999-999-9999"
           maskChar={null}
-
         />
       </TextField>
     );

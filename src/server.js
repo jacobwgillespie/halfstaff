@@ -10,6 +10,7 @@ import React from 'react';
 
 import { configureStore } from './redux/store';
 import Html from './components/Html';
+import muiTheme from './styles/muiTheme';
 import routes from './routes';
 
 import assets from '../dist/assets.json';
@@ -71,7 +72,7 @@ const handleReactRequest = (req, cb) => {
 
 
     const render = () => {
-      const theme = getMuiTheme({}, {
+      const theme = getMuiTheme(muiTheme, {
         userAgent: req.headers['user-agent'],
       });
 

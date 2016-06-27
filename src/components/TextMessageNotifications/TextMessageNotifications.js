@@ -13,8 +13,6 @@ export default class TextMessageNotifications extends Component {
   onSubmit = (e) => {
     e.preventDefault();
     this.setState({ submitAttempted: true });
-
-    console.log('submit', this.state);
   }
 
   onPhoneInputValidation = (valid) => {
@@ -28,7 +26,7 @@ export default class TextMessageNotifications extends Component {
       <div>
         <form onSubmit={this.onSubmit}>
           <PhoneInput showValidation={submitAttempted} onValidation={this.onPhoneInputValidation} />
-          <RaisedButton label="Sign in / Sign up" onClick={this.onSubmit} />
+          <RaisedButton label="Sign in / Sign up" onClick={this.onSubmit} primary />
         </form>
       </div>
     );
