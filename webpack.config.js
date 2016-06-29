@@ -160,8 +160,12 @@ const serverConfig = Object.assign({}, baseConfig, {
       'process.env': {
         NODE_ENV: DEV ? '"development"' : '"production"',
 
-        // preserve ASSET_HOST variable
+        // preserve variables
         ASSET_HOST: 'process.env.ASSET_HOST',
+        FIREBASE_CLIENT_EMAIL: 'process.env.FIREBASE_CLIENT_EMAIL',
+        FIREBASE_DATABASE_URL: 'process.env.FIREBASE_DATABASE_URL',
+        FIREBASE_PRIVATE_KEY: 'process.env.FIREBASE_PRIVATE_KEY',
+        FIREBASE_PROJECT_ID: 'process.env.FIREBASE_PROJECT_ID',
       },
     }),
 
