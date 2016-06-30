@@ -166,6 +166,9 @@ const serverConfig = Object.assign({}, baseConfig, {
         FIREBASE_DATABASE_URL: 'process.env.FIREBASE_DATABASE_URL',
         FIREBASE_PRIVATE_KEY: 'process.env.FIREBASE_PRIVATE_KEY',
         FIREBASE_PROJECT_ID: 'process.env.FIREBASE_PROJECT_ID',
+        TWILIO_AUTH_TOKEN: 'process.env.TWILIO_AUTH_TOKEN',
+        TWILIO_NUMBER: 'process.env.TWILIO_NUMBER',
+        TWILIO_SID: 'process.env.TWILIO_SID',
       },
     }),
 

@@ -16,6 +16,7 @@ const validNumber = number => {
 export default class PhoneInput extends Component {
   static propTypes = {
     defaultValue: PropTypes.any,
+    name: PropTypes.string,
     onValidation: PropTypes.func,
     showValidation: PropTypes.bool,
   }
@@ -46,7 +47,7 @@ export default class PhoneInput extends Component {
   }
 
   render() {
-    const { defaultValue, showValidation } = this.props;
+    const { defaultValue, name, showValidation } = this.props;
     const { valid } = this.state;
     const errorText = !valid && showValidation
       ? 'Please enter a valid phone number'
@@ -58,12 +59,13 @@ export default class PhoneInput extends Component {
         errorText={errorText}
         floatingLabelFixed
         floatingLabelText="Phone Number"
-        onChange={this.onChange}
         id="phone"
+        onChange={this.onChange}
       >
         <InputMask
           mask="999-999-9999"
           maskChar={null}
+          name={name}
         />
       </TextField>
     );

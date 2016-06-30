@@ -24,8 +24,12 @@ export default class TextMessageNotifications extends Component {
 
     return (
       <div>
-        <form onSubmit={this.onSubmit}>
-          <PhoneInput showValidation={submitAttempted} onValidation={this.onPhoneInputValidation} />
+        <form action="/auth/start" method="POST">
+          <PhoneInput
+            name="number"
+            showValidation={submitAttempted}
+            onValidation={this.onPhoneInputValidation}
+          />
           <RaisedButton label="Sign in / Sign up" onClick={this.onSubmit} primary />
         </form>
       </div>
