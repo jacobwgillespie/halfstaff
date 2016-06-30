@@ -1,0 +1,61 @@
+.cls1 {
+  fill: #c03a2b;
+}
+.cls2 {
+  fill: #d1d4d1;
+}
+.cls3 {
+  fill: #556080;
+}
+.cls4 {
+  fill: #0096e6;
+}
+.cls5 {
+  fill: #8697cb;
+}
+.cls6 {
+  fill: #285680;
+}
+.cls7 {
+  fill: #fff;
+}
+.cls8 {
+  fill: #f0c419;
+}
+.cls9 {
+  fill: #701919;
+}
+.cls10 {
+  fill: #ecf0f1;
+}
+.cls11 {
+  fill: #e64c3c;
+}
+
+.half .banner {
+  transform: translateY(0px);
+  animation: halfstaff 4s 0s ease 1 forwards;
+}
+
+.full .banner {
+  transform: translateY(80px);
+  animation: fullstaff 2s 0s ease 1 forwards;
+}
+
+@keyframes halfstaff {
+  0% {
+    transform: translateY(0px);
+  }
+  100% {
+    transform: translateY(40px);
+  }
+}
+
+@keyframes fullstaff {
+  0% {
+    transform: translateY(80px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}

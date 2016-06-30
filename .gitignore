@@ -1,6 +1,7 @@
-.tmp/
-*.log
-app/generatedPages
-data/potus.json
-dist/
 node_modules
+dist
+.tmp
+
+.env*
+*.log
+data/potus.json

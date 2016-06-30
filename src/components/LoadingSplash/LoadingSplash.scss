@@ -1,0 +1,7 @@
+:global {
+  .wf-active .app-ready .loading {
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s 300ms, opacity 300ms linear;
+  }
+}

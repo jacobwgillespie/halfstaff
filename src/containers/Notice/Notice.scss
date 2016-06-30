@@ -1,0 +1,13 @@
+.time {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.time div {
+  flex: 1 0 50%;
+}
+
+.time .label {
+  font-weight: 700;
+}

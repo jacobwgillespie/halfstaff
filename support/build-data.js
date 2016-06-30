@@ -119,7 +119,7 @@ const proclamations = potus.map(
 );
 
 proclamations.forEach(proclamation => {
-  fs.writeJsonSync(path.join(basePath, 'potus', `${proclamation.id}.json`), proclamation);
+  fs.writeJsonSync(path.join(basePath, 'notices', `${proclamation.id}.json`), proclamation);
 });
 
 fs.writeJsonSync(path.join(basePath, 'recent.json'), proclamations);

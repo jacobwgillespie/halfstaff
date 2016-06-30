@@ -1,0 +1,34 @@
+.raised, .lowered {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.raised {
+  background-color: #263238;
+  animation: fullstaffColorChange 2s 0s ease 1 forwards;
+}
+
+.lowered {
+  background-color: #B0BEC5;
+  animation: halfstaffColorChange 4s 0s ease 1 forwards;
+}
+
+@keyframes halfstaffColorChange {
+  0% {
+    background-color: #B0BEC5;
+  }
+  100% {
+    background-color: #263238;
+  }
+}
+
+@keyframes fullstaffColorChange {
+  0% {
+    background-color: #263238;
+  }
+  100% {
+    background-color: #B0BEC5;
+  }
+}
