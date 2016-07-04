@@ -1,0 +1,5 @@
+<%= render Halfstaff.SharedView, "flag.html" %>
+
+<div class="cards">
+  <%= render Halfstaff.SharedView, "notice.html", notice: @notice %>
+</div>

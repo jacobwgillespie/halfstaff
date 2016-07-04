@@ -1,0 +1,35 @@
+<div class="card">
+  <div class="title">
+    <h3><%= @notice.date %></h3>
+    <h2><%= @notice.cleanTitle %></h2>
+  </div>
+  <div class="text">
+    <%= @notice.firstLine %>&hellip;
+  </div>
+  <div class="meta">
+    <div class="time">
+      <div class="label">Start</div>
+      <div><time><%= @notice.tags.startDate %></time></div>
+    </div>
+    <%= if @notice.tags.endDate do %>
+      <div class="time">
+        <div class="label">End</div>
+        <div>
+          <time><%= @notice.tags.endDate %></time>
+          <%= @notice.tags.endTime %>
+        </div>
+      </div>
+    <% end %>
+    <%= if @notice.tags.type |> String.equivalent?("interment") do %>
+      <div class="time">
+        <div class="label">End</div>
+        <div>The day of interment</div>
+      </div>
+    <% end %>
+  </div>
+  <div class="actions">
+    <a class="more-info" href="<%= @notice.url %>" target="_blank">
+      More Information
+    </a>
+  </div>
+</div>

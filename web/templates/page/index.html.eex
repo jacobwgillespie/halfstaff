@@ -1,0 +1,21 @@
+<%= render Halfstaff.SharedView, "flag.html" %>
+
+<div class="cards">
+  <%= @current |> Enum.map(fn(notice) -> %>
+  <%= render Halfstaff.SharedView, "notice.html", notice: notice %>
+  <% end) %>
+
+  <div class="card recent">
+    <div class="title">
+      <h3>Recent Notices</h3>
+    </div>
+    <div class="text">
+      <%= @recent |> Enum.map(fn(recent) -> %>
+      <div class="recent-notice">
+        <a href="/<%= recent.id %>/"><%= recent.cleanTitle %></a>
+        <small><%= recent.tags.startDate %></small>
+      </div>
+      <% end) %>
+    </div>
+  </div>
+</div>

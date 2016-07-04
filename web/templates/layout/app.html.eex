@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Halfstaff</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Cairo:300,400,600,700" rel="stylesheet">
+    <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
+  </head>
+
+  <body class="<%= if @pageHalfStaff do %>halfstaff<% else %>fullstaff<% end %>">
+    <header class="header">
+      <a class="title" href="/"><small>currently at</small><br><%= if @currentHalfStaff do %>Half<% else %>Full<% end %> Staff</a>
+      <ul class="menu">
+        <li><a href="/about/">About</a></li>
+      </ul>
+    </header>
+    <main class="main">
+      <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
+      <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
+      <%= render @view_module, @view_template, assigns %>
+    </main>
+
+    <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
+  </body>
+</html>
