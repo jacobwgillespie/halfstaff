@@ -19,7 +19,7 @@ defmodule Halfstaff.Mixfile do
   def application do
     [mod: {Halfstaff, []},
      applications: [:phoenix, :phoenix_pubsub, :phoenix_html, :cowboy, :logger, :gettext,
-                    :phoenix_ecto, :postgrex, :timex]]
+                    :phoenix_ecto, :postgrex, :timex, :tzdata]]
   end
 
   # Specifies which paths to compile per environment.
@@ -40,6 +40,7 @@ defmodule Halfstaff.Mixfile do
      {:cowboy, "~> 1.0"},
      {:poison, "~> 2.0"},
      {:timex, "~> 2.2.1"},
+     {:timex_ecto, "~> 1.1.3"},
      {:credo, "~> 0.4", only: [:dev, :test]}]
   end
 
