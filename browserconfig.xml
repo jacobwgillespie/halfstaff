@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<browserconfig>
+  <msapplication>
+    <tile>
+      <square70x70logo src="https://cdn.halfstaff.co/images/icons/mstile-70x70-0448bf229d.png"/>
+      <square150x150logo src="https://cdn.halfstaff.co/images/icons/mstile-150x150-9442cb48c1.png"/>
+      <square310x310logo src="https://cdn.halfstaff.co/images/icons/mstile-310x310-2d3833a04a.png"/>
+      <wide310x150logo src="https://cdn.halfstaff.co/images/icons/mstile-310x150-5e58f1287a.png"/>
+      <TileColor>#da532c</TileColor>
+    </tile>
+  </msapplication>
+</browserconfig>
