@@ -1,0 +1,44 @@
+<% cache [:v1, :partial, notice] do %>
+  <div class="card">
+    <div class="title">
+      <h3><%= notice.posted_date.strftime('%B %-d, %Y') %></h3>
+      <%= link_to notice do %>
+        <h2><%= notice.title %></h2>
+      <% end %>
+    </div>
+    <div class="text">
+      <%= notice.summary %>
+    </div>
+    <div class="meta">
+      <div class="time">
+        <div class="label">Start</div>
+        <div><time><%= notice.start_date.strftime('%B %-d, %Y') %></time></div>
+      </div>
+      <% if notice.end_date %>
+        <div class="time">
+          <div class="label">End</div>
+          <div>
+            <time><%= notice.end_date.strftime('%B %-d, %Y') %></time>
+            <% case notice.end_time %>
+            <% when "noon" %>
+            until noon
+            <% when "sunset" %>
+            until sunset
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+      <% if notice.notice_type == 'interment' %>
+        <div class="time">
+          <div class="label">End</div>
+          <div>The day of interment</div>
+        </div>
+      <% end %>
+    </div>
+    <div class="actions">
+      <a class="more-info" href="<%= notice.url %>" target="_blank">
+        Details
+      </a>
+    </div>
+  </div>
+<% end %>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title><%= content_for?(:title) ? "#{yield(:title)} | Half Staff" : 'Half Staff' %></title>
+
+  <% if content_for(:description) %>
+  <meta name="description" content="<%= yield(:description) %>">
+  <% end %>
+
+  <%= render 'favicon' %>
+  <%= csrf_meta_tags %>
+
+  <link href="https://fonts.googleapis.com/css?family=Cairo:300,400,600,700" rel="stylesheet">
+  <%= stylesheet_link_tag    'application', media: 'all' %>
+
+  <script src="https://checkout.stripe.com/checkout.js"></script>
+  <script>
+    window.STRIPE_TOKEN = '<%= Rails.configuration.stripe[:key] %>';
+    window.STRIPE_LOGO = '<%= image_path 'icon.svg'  %>';
+  </script>
+</head>
+
+<body class="<% if @page_half_staff %>halfstaff<% else %>fullstaff<% end %>">
+  <header class="header">
+    <a class="title" href="/"><small>currently at</small><br><% if @currently_half_staff %>Half<% else %>Full<% end %> Staff</a>
+    <ul class="menu">
+      <li><a href="/about/">About</a></li>
+      <li class="notifications"><a href="/notifications/">Notifications</a></li>
+      <% if signed_in? %>
+        <li class="logout"><%= button_to 'Logout', logout_path, method: :delete %></li>
+      <% end %>
+    </ul>
+  </header>
+  <% if flash[:notice] || flash[:error] %>
+    <div class="flash">
+      <div class="card">
+        <div class="text">
+          <% if flash[:notice] %><p class="notice"><%= flash[:notice] %></p><% end %>
+          <% if flash[:error] %><p class="error"><%= flash[:error] %></p><% end %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+  <main class="main">
+    <%= content_for?(:content) ? yield(:content) : yield %>
+  </main>
+  <%= javascript_include_tag 'application' %>
+  <script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-79594103-1', 'auto');
+    ga('send', 'pageview');</script>
+</body>
+</html>
