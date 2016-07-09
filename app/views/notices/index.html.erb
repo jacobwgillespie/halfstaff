@@ -1,0 +1,30 @@
+<% content_for :title do %><% if @currently_half_staff %>The flag is lowered<% else %>The flag is at full staff<% end %><% end %>
+<% content_for :description do %><%= (@currently_half_staff ? "#{@current_notices[0].title} - #{@current_notices[0].summary}" : "The flag is at full staff. Browse recent flag notices and read about flag etiquette.").truncate(150) %><% end %>
+
+<% cache [:v1, @current_notices] do %>
+  <%=
+    render(
+      collection: @current_notices,
+      partial: :notice,
+      as: :notice,
+      show_summary: false,
+      action_type: :details
+    )
+  %>
+<% end %>
+
+<% cache [:v1, @recent_notices] do %>
+<div class="card recent">
+  <div class="title">
+    <h3>Recent Notices</h3>
+  </div>
+  <div class="text">
+    <% @recent_notices.each do |notice| %>
+    <div class="recent-notice">
+      <%= link_to notice.title, notice %>
+      <small><%= notice.start_date.strftime('%B %-d, %Y') %></small>
+    </div>
+    <% end %>
+  </div>
+</div>
+<% end %>

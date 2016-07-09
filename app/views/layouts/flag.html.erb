@@ -1,0 +1,7 @@
+<% content_for :content do %>
+  <%= render partial: 'shared/flag' %>
+  <div class="cards">
+    <%= yield %>
+  </div>
+<% end %>
+<%= render template: 'layouts/application' %>
