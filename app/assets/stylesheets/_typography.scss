@@ -1,0 +1,39 @@
+@import 'variables';
+
+.center { text-align: center; }
+
+label {
+  font-weight: bold;
+}
+
+[type="text"],
+[type="tel"],
+[type="number"] {
+  border: 1px solid $black;
+  box-sizing: border-box;
+  display: block;
+  margin: 1em 0;
+  padding: 1em;
+  width: 100%;
+}
+
+button,
+[type="submit"] {
+  background: transparent;
+  border: 1px solid $black;
+  border-radius: 3px;
+  cursor: pointer;
+  font-family: 'Cairo', sans-serif;
+  font-size: 16px;
+  padding: 1px 8px;
+}
+
+
+.date {
+  white-space: nowrap;
+}
+
+.button-inline {
+  display: inline-block;
+  margin-right: 1em;
+}
