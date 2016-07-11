@@ -19,6 +19,18 @@ Rails.application.routes.draw do
   # Jump link for SMS
   get 'n/:id' => 'notices#jump'
 
+  # SEO redirects from old site version
+  get 'yA399zrmM0' => redirect('n/p0k3b')
+  get 'yA39EAzJlK' => redirect('n/7lArW')
+  get 'yA39gkMeqB' => redirect('n/6l2Qb')
+  get 'yA39ARkX4O' => redirect('n/M5d0a')
+  get 'yA3z7evlWr' => redirect('n/xxDEg')
+  get 'yA3z44y3Wx' => redirect('n/5lzWN')
+  get 'yA3BPgvrKQ' => redirect('n/3lgkn')
+  get 'yA3BWdJY8D' => redirect('n/nyoXr')
+  get 'yA3BWbol9g' => redirect('n/yBp2W')
+  get 'yA3ymA8GmB' => redirect('n/GAObW')
+
   # Fallback for all notices
   get ':id' => 'notices#show', as: :notice
 
