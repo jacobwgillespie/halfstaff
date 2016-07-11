@@ -25,10 +25,12 @@ class AuthenticationController < ApplicationController
     )
 
     if @user
+      puts "Setting session user to #{@user.id}"
       session[:user] = @user.id
       flash[:notice] = 'Successfully verified your phone number'
       redirect_to :notifications
     else
+      puts "failed"
       flash[:error] = 'Invalid token, please try again'
       redirect_to authentication_token_path(params[:phone])
     end
