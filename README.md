@@ -3,6 +3,9 @@
 Is the flag at half staff?  [Half Staff](https://halfstaff.co) displays the current US flag status in a clean, simple format and allows for browsing past flag notices.
 
 [![Build Status](https://travis-ci.org/jacobwgillespie/halfstaff.svg?branch=master)](https://travis-ci.org/jacobwgillespie/halfstaff)
+[![Dependency Status](https://gemnasium.com/badges/github.com/jacobwgillespie/halfstaff.svg)](https://gemnasium.com/github.com/jacobwgillespie/halfstaff)
+[![Code Climate](https://codeclimate.com/github/jacobwgillespie/halfstaff/badges/gpa.svg)](https://codeclimate.com/github/jacobwgillespie/halfstaff)
+[![Issue Count](https://codeclimate.com/github/jacobwgillespie/halfstaff/badges/issue_count.svg)](https://codeclimate.com/github/jacobwgillespie/halfstaff)
 [![MIT licensed](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/jacobwgillespie/halfstaff/blob/master/LICENSE)
 
 Table of Contents
