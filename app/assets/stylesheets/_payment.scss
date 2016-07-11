@@ -1,0 +1,21 @@
+@import 'variables';
+
+.payment-entry {
+  border-bottom: 1px solid $light-gray;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 1em 0;
+
+  .date {
+    font-weight: bold;
+  }
+
+  &:first-child {
+    padding-top: 0;
+  }
+
+  &:last-child {
+    border-bottom: 0;
+  }
+}

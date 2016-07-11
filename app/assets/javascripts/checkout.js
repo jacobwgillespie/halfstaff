@@ -29,7 +29,7 @@ if (button) {
       name: 'HalfStaff.co',
       description: description,
       amount: amount,
-      zipCode: true,
+      zipCode: true
     });
   });
 

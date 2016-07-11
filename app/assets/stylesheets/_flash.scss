@@ -1,0 +1,46 @@
+@import 'variables';
+
+.flash {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: -10;
+
+  .card {
+    animation: flash 8s 0s ease 1 forwards;
+    margin-top: -100px;
+    z-index: 10;
+  }
+
+  .notice {
+    color: $green;
+    font-weight: bold;
+  }
+
+  .error {
+    color: $red;
+    font-weight: bold;
+  }
+}
+
+@keyframes flash {
+  0% {
+    margin-top: -100px;
+  }
+
+  20% {
+    margin-top: 20px;
+  }
+
+  90% {
+    margin-top: 20px;
+  }
+
+  100% {
+    margin-top: -100px;
+  }
+}

@@ -1,0 +1,36 @@
+@import 'variables';
+
+body {
+  font-family: 'Cairo', sans-serif;
+  overflow-x: hidden;
+
+  &.fullstaff {
+    animation: fullstaffColorChange 2s 0s ease 1 forwards;
+    background-color: $page-bg-dark;
+  }
+
+  &.halfstaff {
+    animation: halfstaffColorChange 4s 0s ease 1 forwards;
+    background-color: $page-bg-light;
+  }
+}
+
+@keyframes halfstaffColorChange {
+  0% {
+    background-color: $page-bg-light;
+  }
+
+  100% {
+    background-color: $page-bg-dark;
+  }
+}
+
+@keyframes fullstaffColorChange {
+  0% {
+    background-color: $page-bg-dark;
+  }
+
+  100% {
+    background-color: $page-bg-light;
+  }
+}

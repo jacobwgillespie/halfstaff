@@ -46,7 +46,7 @@
     <h3>Extend Notifications</h3>
   </div>
   <div class="text">
-    <%= form_tag notifications_path, method: :post, id: 'stripe-form' do %>
+    <%= form_tag notifications_path, method: :post, id: 'stripe-form', class: 'stripe-form' do %>
       <%= hidden_field_tag :token, nil, id: 'stripe-token' %>
       <%= hidden_field_tag :email, nil, id: 'stripe-email' %>
       <div class="stripe-extend">
@@ -61,7 +61,7 @@
         </span>
 
         <p>
-          <a class="stripe-button light-blue" id="stripe-button"><span>Pay with Stripe</span></a>
+          <a class="stripe-button" id="stripe-button"><span>Pay with Stripe</span></a>
         </p>
       </div>
     <% end %>

@@ -1,0 +1,104 @@
+// Colors for the flag
+
+$cls1: #c03a2b;
+$cls2: #d1d4d1;
+$cls3: #556080;
+$cls4: #0096e6;
+$cls5: #8697cb;
+$cls6: #285680;
+$cls7: #fff;
+$cls8: #f0c419;
+$cls9: #701919;
+$cls10: #ecf0f1;
+$cls11: #e64c3c;
+
+.flag {
+  width: 150px;
+}
+
+@media only screen and (min-width: 460px) {
+  .flag {
+    margin-right: 10vw;
+  }
+}
+
+@media screen and (min-width: 750px) {
+  .flag {
+    width: 200px;
+  }
+}
+
+.cls-1 {
+  fill: $cls1;
+}
+
+.cls-2 {
+  fill: $cls2;
+}
+
+.cls-3 {
+  fill: $cls3;
+}
+
+.cls-4 {
+  fill: $cls4;
+}
+
+.cls-5 {
+  fill: $cls5;
+}
+
+.cls-6 {
+  fill: $cls6;
+}
+
+.cls-7 {
+  fill: $cls7;
+}
+
+.cls-8 {
+  fill: $cls8;
+}
+
+.cls-9 {
+  fill: $cls9;
+}
+
+.cls-10 {
+  fill: $cls10;
+}
+
+.cls-11 {
+  fill: $cls11;
+}
+
+
+.halfstaff .banner {
+  animation: halfstaff 4s 0s ease 1 forwards;
+  transform: translateY(0);
+}
+
+.fullstaff .banner {
+  animation: fullstaff 2s 0s ease 1 forwards;
+  transform: translateY(80px);
+}
+
+@keyframes halfstaff {
+  0% {
+    transform: translateY(0);
+  }
+
+  100% {
+    transform: translateY(40px);
+  }
+}
+
+@keyframes fullstaff {
+  0% {
+    transform: translateY(80px);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}
