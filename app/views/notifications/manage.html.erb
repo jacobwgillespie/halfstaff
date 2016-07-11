@@ -1,0 +1,90 @@
+<% content_for :title do %>Manage Notifications<% end %>
+<div class="card">
+  <div class="title">
+    <h3>Your Notifications</h3>
+  </div>
+  <div class="text">
+    <p>
+      Your number is <strong><%= current_user.formatted_phone %></strong>.
+    </p>
+
+    <% if current_user.expires_at %>
+      <% if current_user.expires_at > DateTime.now %>
+        <% if current_user.active %>
+          <p>
+            Notifications are <strong>active</strong> and will continue until <strong><span class="date"><%= current_user.expires_at.strftime('%B %-d, %Y') %></span></strong>.
+          </p>
+
+          <p>
+            <%= button_to 'Pause', notifications_pause_path, method: :put, form_class: 'button-inline' %>
+            <%= button_to 'Logout', logout_path, method: :delete, form_class: 'button-inline' %>
+          </p>
+        <% else %>
+          <p>
+            Notifications are <strong>paused</strong> but are paid through <strong><span class="date"><%= current_user.expires_at.strftime('%B %-d, %Y') %></span></strong>.
+          </p>
+
+          <p>
+            <%= button_to 'Resume', notifications_pause_path, method: :put, form_class: 'button-inline' %>
+            <%= button_to 'Logout', logout_path, method: :delete, form_class: 'button-inline' %>
+          </p>
+        <% end %>
+      <% else %>
+        <p>
+          Notifications are <strong>inactive</strong> and expired at <strong><span class="date"><%= current_user.expires_at.strftime('%B %-d, %Y') %></span></strong>.
+          To resume, use the button below to extend notifications.
+        </p>
+      <% end %>
+    <% else %>
+      <p>Receive a text message any time the US flag is lowered.  <strong>$2 / year</strong> one-time purchase, does not renew.</p>
+    <% end %>
+  </div>
+</div>
+
+<div class="card">
+  <div class="title">
+    <h3>Extend Notifications</h3>
+  </div>
+  <div class="text">
+    <%= form_tag notifications_path, method: :post, id: 'stripe-form' do %>
+      <%= hidden_field_tag :token, nil, id: 'stripe-token' %>
+      <%= hidden_field_tag :email, nil, id: 'stripe-email' %>
+      <div class="stripe-extend">
+        <span class="stripe-years">
+          <select id="stripe-years" name="years">
+            <option value="1">1 year ($2)</option>
+            <option value="2">2 years ($4)</option>
+            <option value="3">3 years ($6)</option>
+            <option value="4">4 years ($8)</option>
+            <option value="5">5 years ($10)</option>
+          </select>
+        </span>
+
+        <p>
+          <a class="stripe-button light-blue" id="stripe-button"><span>Pay with Stripe</span></a>
+        </p>
+      </div>
+    <% end %>
+
+    <p>If you have any issues or questions, or if you need to change your phone number, please <a href="mailto:jacobwgillespie@gmail.com">send an email</a> and we will get back with you as soon as possible.</p>
+  </div>
+</div>
+
+<% if !current_user.payments.empty? %>
+<div class="card">
+  <div class="title">
+    <h3>Payment History</h3>
+  </div>
+  <div class="text">
+    <div class="payment-history">
+      <% current_user.payments.each do |payment| %>
+        <div class="payment-entry">
+          <div><span class="date"><%= payment.created_at.strftime('%B %-d, %Y') %></span></div>
+          <div>Extended <%= pluralize(payment.years, 'year') %></div>
+          <div><%= number_to_currency(payment.amount / 100) %></div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+<% end %>

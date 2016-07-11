@@ -1,0 +1,3 @@
+<% content_for :title do %><%= @notice.start_date.strftime('%B %-d, %Y')%> - <%= @notice.title %><% end %>
+<% content_for :description do %><%= @notice.summary.truncate(150) %><% end %>
+<%= render partial: 'notice', locals: { notice: @notice } %>

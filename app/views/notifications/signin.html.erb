@@ -1,0 +1,22 @@
+<% content_for :title do %>Notifications<% end %>
+<div class="card">
+  <div class="title">
+    <h3>Your Notifications</h3>
+  </div>
+  <div class="text">
+    <p>
+      Subscribe to receive text messages notifying you when the US flag is lowered to keep informed and know when to lower your own flags. One time charge of <strong>$2 / year</strong>.</p>
+    </p>
+
+    <%= form_tag authentication_phone_path, method: :post do %>
+      <p>
+        <label>
+          Phone Number
+          <%= telephone_field_tag :phone %>
+        </label>
+      </p>
+
+      <p><%= submit_tag 'Sign in / Sign up' %></p>
+    <% end %>
+  </div>
+</div>

@@ -1,23 +1,22 @@
-language: node_js
-node_js:
-  - "6"
-cache:
-  directories:
-    - node_modules
+language: ruby
+rvm:
+  - 2.3.1
+cache: bundler
+
 env:
   global:
     - CXX=g++-4.8
-    - ASSET_HOST=https://cdn.halfstaff.co
-    # GH_TOKEN=xxxxxxxxxxxxxxxxxx
-    - secure: "NX5MUcG+Lhp+w7OG6aO9ugn8aqk1ZJZRx73hCvF4p7nYbY/phy+UelWC/QstLsy5BbjLyVK8xSlLY4ylFA+gQuBmxMKShT2IV4E0JYgtT9udeI94ReYTmrc354KG5/H0/yqH0EPA2Z+86CT+w63hTUAJQ7Ml3z/Bs+qnn7M7ZzAcABm6QHi7/cfgHOL0HTuYNqbwgMQrQ/OT2GeQwARuTFWcg7Mjn6vAMuql97RYyFrXONZmp3qeKaNhdRc3n7SQK45fJhM35MS1cgeWKSmpy1A8nKdc2RmULwgkBoNGWDgQfDADDC96y4pL8SbHMibF3xUxds5NkvVLh6+CC0r1LZRijnXJDC6w3Ijz3WqmknoaJH2Q8AnMm/DZqMYt3NCx3ETGwRJL2UjMUvT/u9WlhtpTEMDsw4t2PjNjhD+jABBArp7BXit/qNWoMw0bhz2kOao7xKLG6XsNYDNAfKOfkZD1VJalaJEBTMqL1JkRWbkhJtjLUjTYF2Qp2zoiMpWbd9bRTsJrFNAv800MzNsGJxBmt+YwKMuFuey74G+njWUJ9zNuZBCcjF9TI9IRrLHvVrSK9lwGM8TutGM4+C8j8qoOnLZ0JASjAiRgwFCVAzLlO0OfzS5nmqqbUp3TjkykmweOR2ff06PyL9jGWCYgOQnq5XuSo6naRO9j1oHCMRs="
+
+services:
+  - redis-server
+
 addons:
+  postgresql: 9.3
   apt:
     sources:
       - ubuntu-toolchain-r-test
     packages:
       - g++-4.8
-script:
-  - npm run build-pages
-  - npm run build-site
-after_success:
-  - if [[ "$TRAVIS_BRANCH" = "master" ]]; then ./support/deploy.sh; fi
+
+before_script:
+  - bundle exec rake db:create db:migrate db:seed

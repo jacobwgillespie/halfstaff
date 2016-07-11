@@ -1,0 +1,2 @@
+module Whitehouse
+end
