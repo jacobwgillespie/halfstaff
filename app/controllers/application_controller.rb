@@ -10,6 +10,10 @@ class ApplicationController < ActionController::Base
   def set_flag_status
     @currently_half_staff = !Notice.current.empty?
     @page_half_staff = @currently_half_staff
+
+    puts session.id
+    puts session.keys
+    puts session[:user]
   end
 
   def lower_page_flag
