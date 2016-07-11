@@ -29,7 +29,7 @@
     <a class="title" href="/"><small>currently at</small><br><% if @currently_half_staff %>Half<% else %>Full<% end %> Staff</a>
     <ul class="menu">
       <li><a href="/about/">About</a></li>
-      <!--<li class="notifications"><a href="/notifications/">Notifications</a></li>-->
+      <li class="notifications"><a href="/notifications/">Notifications</a></li>
       <% if signed_in? %>
         <li class="logout"><%= button_to 'Logout', logout_path, method: :delete %></li>
       <% end %>
