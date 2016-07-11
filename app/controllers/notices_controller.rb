@@ -14,6 +14,6 @@ class NoticesController < ApplicationController
 
   def jump
     @notice = Notice.where(hashid: params[:id]).first
-    redirect_to @notice || :root
+    redirect_to(@notice || :root, status: 301)
   end
 end
