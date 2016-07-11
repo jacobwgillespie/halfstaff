@@ -10,4 +10,6 @@ try {
       registrations[i].unregister();
     }
   });
-} catch (e) {}
+} catch (e) {
+  // Ignore this error, we either don't support service workers or none exist
+}
