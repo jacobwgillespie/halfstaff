@@ -33,7 +33,7 @@ end
 
 group :development do
   gem 'listen', '~> 3.0.5'
-  gem 'rails_real_favicon', '0.0.4' # TODO: update this once Stripd updates their deps
+  gem 'rails_real_favicon'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'spring'
   gem 'web-console'
