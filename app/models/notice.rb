@@ -2,7 +2,9 @@ class Notice < ApplicationRecord
   has_many :notice_notifications, dependent: :destroy
   has_many :users, through: :notice_notifications
 
-  scope :current, -> { where('start_date <= ? AND end_date >= ?', Date.today, Date.today) }
+  scope :current, -> {
+    where('start_date <= ? AND end_date >= ?', Date.today, Date.today).order(posted_date: :desc)
+  }
   scope :recent, -> { order(posted_date: :desc).limit(10) }
 
   before_validation :set_slug, unless: -> { slug? }
