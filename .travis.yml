@@ -18,5 +18,8 @@ addons:
     packages:
       - g++-4.8
 
+before_install:
+  - gem install bundler
+
 before_script:
   - bundle exec rake db:create db:migrate db:seed
