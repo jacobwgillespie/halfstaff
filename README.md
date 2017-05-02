@@ -71,4 +71,4 @@ License
 -------
 
 Half Staff is licensed under the [MIT](https://github.com/jacobwgillespie/halfstaff/blob/master/LICENSE) license.  
-Copyright &copy; 2016, Jacob Gillespie
+Copyright &copy; 2016-2017, Jacob Gillespie
