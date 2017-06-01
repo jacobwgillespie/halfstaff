@@ -6,12 +6,7 @@ class PauseNotifications
   end
 
   def pause
-    if user.active
-      user.active = false
-    else
-      user.active = true
-    end
-
+    user.active = user.active ? false : true
     user.save
   end
 end

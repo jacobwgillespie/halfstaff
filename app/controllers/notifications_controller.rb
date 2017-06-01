@@ -30,11 +30,9 @@ class NotificationsController < ApplicationController
       user: current_user,
     )
 
-    flash[:notice] = if action.pause
-      'Successfully paused notifications'
-    else
-      'Successfully resumed notifications'
-    end
+    flash[:notice] = (
+      action.pause ? 'Successfully paused notifications' : 'Successfully resumed notifications'
+    )
 
     redirect_to notifications_path
   end

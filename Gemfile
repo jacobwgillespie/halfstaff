@@ -18,7 +18,7 @@ gem 'sass-rails', '~> 5.0'
 gem 'stripe'
 gem 'turbolinks', '~> 5'
 gem 'twilio-ruby'
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 gem 'uglifier'
 gem 'wombat'
 
@@ -29,12 +29,13 @@ end
 group :development, :test do
   gem 'byebug', platform: :mri
   gem 'dotenv-rails'
+  gem 'rubocop'
 end
 
 group :development do
   gem 'listen', '~> 3.1.0'
   gem 'rails_real_favicon'
-  gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'spring'
+  gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'web-console'
 end

@@ -41,11 +41,11 @@ module Whitehouse
         map { |line| line.split("\n") }.
         flatten.
         map { |line| line.gsub(/^[\s\u00A0]+/, '').gsub(/[\s\u00A0]+$/, '') }.
-        select { |line| !line.empty? }
+        reject(&:empty?)
     end
 
     def body_content_lines
-      @body_content_lines ||= body.select { |line| !line_centered?(line) }
+      @body_content_lines ||= body.reject { |line| line_centered?(line) }
     end
 
     def body_dates

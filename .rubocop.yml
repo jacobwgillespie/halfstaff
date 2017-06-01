@@ -65,9 +65,6 @@ CyclomaticComplexity:
 Delegate:
   Enabled: false
 
-DeprecatedHashMethods:
-  Enabled: false
-
 Documentation:
   Enabled: false
 
@@ -134,7 +131,7 @@ MethodLength:
 ModuleFunction:
   Enabled: false
 
-Style/MultilineMethodCallIndentation:
+Layout/MultilineMethodCallIndentation:
   Enabled: true
   EnforcedStyle: indented
 
@@ -361,7 +358,7 @@ Style/MultilineBlockChain:
   StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#single-line-blocks'
   Enabled: false
 
-Style/MultilineOperationIndentation:
+Layout/MultilineOperationIndentation:
   Description: Checks indentation of binary operations that span multiple lines.
   Enabled: true
   EnforcedStyle: indented
