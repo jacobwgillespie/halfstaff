@@ -25,7 +25,7 @@ class ExtendNotifications
     user.payments.create(
       customer_id: customer.id,
       charge_id: charge.id,
-      email: params[:email],
+      email: email,
       years: years,
       amount: amount,
     )
