@@ -22,10 +22,6 @@ gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 gem 'uglifier'
 gem 'wombat'
 
-group :production do
-  gem 'skylight'
-end
-
 group :development, :test do
   gem 'byebug', platform: :mri
   gem 'dotenv-rails'
