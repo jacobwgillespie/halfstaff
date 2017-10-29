@@ -158,7 +158,7 @@ NumericLiterals:
 OneLineConditional:
   Enabled: false
 
-OpMethod:
+Naming/BinaryOperatorParameterName:
   Enabled: false
 
 ParameterLists:
@@ -259,9 +259,6 @@ FormatParameterMismatch:
   Enabled: false
 
 HandleExceptions:
-  Enabled: false
-
-InvalidCharacterLiteral:
   Enabled: false
 
 InitialIndentation:
