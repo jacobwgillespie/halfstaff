@@ -1,7 +1,7 @@
 class User < ApplicationRecord
   has_many :payments
 
-  scope :active, -> { where(active: true).where('expires_at > ?', DateTime.now) }
+  scope :active, -> { where(active: true).where('expires_at > ?', Time.now) }
 
   validates(
     :phone,
@@ -21,11 +21,11 @@ class User < ApplicationRecord
   end
 
   def active?
-    stripe_id && expires_at > DateTime.now
+    stripe_id && expires_at > Time.now
   end
 
   def extend_user(years)
-    self.expires_at = DateTime.now if expires_at.nil? || expires_at < DateTime.now
+    self.expires_at = Time.now if expires_at.nil? || expires_at < Time.now
     self.expires_at += years.years
     self.active = true
     save
