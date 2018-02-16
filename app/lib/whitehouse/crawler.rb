@@ -43,7 +43,7 @@ module Whitehouse
           body({ css: '.page-content__content p' }, :list)
         end
 
-        proclamation['url'] = "#{BASE_URL}#{url}"
+        proclamation['url'] = "#{BASE_URL}#{url.gsub(BASE_URL, '')}"
 
         proclamation
       end
