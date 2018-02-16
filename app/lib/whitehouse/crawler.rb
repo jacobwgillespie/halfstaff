@@ -20,13 +20,13 @@ module Whitehouse
       private
 
       def proclamation_links(page = nil)
-        query = page ? "?page=#{page}" : ''
+        query = page ? "page/#{page}/2" : ''
 
         links = Wombat.crawl do
           base_url BASE_URL
-          path "/briefing-room/presidential-actions/proclamations#{query}"
+          path "/presidential-actions/#{query}"
 
-          links({ xpath: '//h3/a/@href' }, :list)
+          links({ xpath: '//h2/a/@href' }, :list)
         end['links']
 
         links
@@ -35,12 +35,12 @@ module Whitehouse
       def proclamation(url)
         proclamation = Wombat.crawl do
           base_url BASE_URL
-          path url
+          path url.gsub(BASE_URL, '')
 
-          title css: '.pane-node-title h1'
-          date css: '.press-article-date'
+          title css: 'h1.page-header__title'
+          date css: '.meta__date time'
 
-          body({ css: '#content-start .field-items p' }, :list)
+          body({ css: '.page-content__content p' }, :list)
         end
 
         proclamation['url'] = "#{BASE_URL}#{url}"
