@@ -203,7 +203,11 @@ SpecialGlobalVars:
 StringLiterals:
   EnforcedStyle: single_quotes
 
-Style/TrailingCommaInLiteral:
+Style/TrailingCommaInArrayLiteral:
+  Enabled: true
+  EnforcedStyleForMultiline: comma
+
+Style/TrailingCommaInHashLiteral:
   Enabled: true
   EnforcedStyleForMultiline: comma
 
@@ -264,9 +268,6 @@ HandleExceptions:
 InitialIndentation:
   Enabled: false
 
-LiteralInCondition:
-  Enabled: false
-
 LiteralInInterpolation:
   Enabled: false
 
@@ -286,9 +287,6 @@ RequireParentheses:
   Enabled: false
 
 UnderscorePrefixedVariableName:
-  Enabled: false
-
-UnneededDisable:
   Enabled: false
 
 Void:
@@ -363,4 +361,13 @@ Layout/MultilineOperationIndentation:
   EnforcedStyle: indented
 
 Metrics/AbcSize:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/MixinUsage:
+  Enabled: false
+
+Style/StderrPuts:
   Enabled: false

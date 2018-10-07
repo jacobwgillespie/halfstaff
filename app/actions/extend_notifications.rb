@@ -9,7 +9,7 @@ class ExtendNotifications
   end
 
   def extend_subscription
-    return false unless years > 0
+    return false unless years.positive?
 
     charge = Stripe::Charge.create(
       customer: customer.id,

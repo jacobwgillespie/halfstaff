@@ -1,6 +1,4 @@
 class ApplicationController < ActionController::Base
-  protect_from_forgery with: :exception
-
   before_action :set_flag_status
 
   helper_method :signed_in?, :current_user
