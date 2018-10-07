@@ -11,7 +11,7 @@ services:
   - redis-server
 
 addons:
-  postgresql: '10'
+  postgresql: 9.3
   apt:
     sources:
       - ubuntu-toolchain-r-test
