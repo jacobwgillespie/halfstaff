@@ -3,8 +3,8 @@ module Whitehouse
     MONTHS = %w(
       january february march april may june july august september october november december
     ).freeze
-    END_TIMES = '(noon|sunset)'.freeze
-    DATE = "(this )?((#{MONTHS.join('|')}) \\d{1,2},? \\d{4})".freeze
+    END_TIMES = "(noon|sunset)".freeze
+    DATE = "(this )?((#{MONTHS.join("|")}) \\d{1,2},? \\d{4})".freeze
     RELATIVE_DATE = '(on (the|this)( \\w+)? day( of (interment))?)'.freeze
     UNTIL = "(until|through)( #{END_TIMES})?,? ((#{DATE})|#{RELATIVE_DATE})".freeze
 
@@ -26,7 +26,7 @@ module Whitehouse
         html: html,
         notice_type: notice_type,
         posted_date: posted_date,
-        scope: 'US',
+        scope: "US",
         start_date: start_date,
         summary: summary,
         title: title,
@@ -37,10 +37,10 @@ module Whitehouse
     private
 
     def body
-      @body ||= data['body'].
+      @body ||= data["body"].
         map { |line| line.split("\n") }.
         flatten.
-        map { |line| line.gsub(/^[\s\u00A0]+/, '').gsub(/[\s\u00A0]+$/, '') }.
+        map { |line| line.gsub(/^[\s\u00A0]+/, "").gsub(/[\s\u00A0]+$/, "") }.
         reject(&:empty?)
     end
 
@@ -55,7 +55,7 @@ module Whitehouse
     end
 
     def body_text
-      @body_text ||= body.join(' ')
+      @body_text ||= body.join(" ")
     end
 
     def end_date
@@ -64,7 +64,7 @@ module Whitehouse
           newest_date
         elsif until_body_date[5]
           Date.parse(until_body_date[5])
-        elsif notice_type != 'interment'
+        elsif notice_type != "interment"
           newest_date
         end
       end
@@ -72,8 +72,8 @@ module Whitehouse
 
     def end_time
       @end_time ||= begin
-        if until_body_date.nil? || until_body_date[1] == 'through'
-          'end_of_day'
+        if until_body_date.nil? || until_body_date[1] == "through"
+          "end_of_day"
         else
           until_body_date[3]
         end
@@ -99,15 +99,15 @@ module Whitehouse
     def notice_type
       @notice_type ||= begin
         if body_text.match? /on the day of interment/i
-          'interment'
+          "interment"
         else
-          'date'
+          "date"
         end
       end
     end
 
     def posted_date
-      @posted_date ||= Date.parse(data['date'])
+      @posted_date ||= Date.parse(data["date"])
     end
 
     def start_date
@@ -121,11 +121,11 @@ module Whitehouse
     end
 
     def summary
-      @summary ||= body_content_lines.join(' ').truncate(600, separator: ' ')
+      @summary ||= body_content_lines.join(" ").truncate(600, separator: " ")
     end
 
     def title
-      @title ||= data['title'].gsub(/presidential proclamation( --|:)/i, '').strip
+      @title ||= data["title"].gsub(/presidential proclamation( --|:)/i, "").strip
     end
 
     def until_body_date
@@ -133,7 +133,7 @@ module Whitehouse
     end
 
     def url
-      @url ||= data['url']
+      @url ||= data["url"]
     end
 
     # Utilities

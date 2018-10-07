@@ -1,7 +1,7 @@
 class User < ApplicationRecord
   has_many :payments
 
-  scope :active, -> { where(active: true).where('expires_at > ?', Time.now) }
+  scope :active, -> { where(active: true).where("expires_at > ?", Time.now) }
 
   validates(
     :phone,
@@ -13,7 +13,7 @@ class User < ApplicationRecord
     user = where(
       phone: Phone.sanitize(phone),
       token: token,
-    ).where('token_generated_at > ?', 1.hour.ago).first
+    ).where("token_generated_at > ?", 1.hour.ago).first
 
     user&.reset_login
 
@@ -32,7 +32,7 @@ class User < ApplicationRecord
 
     Sms.send(
       phone,
-      "Your flag notifications are now extended until #{expires_at.strftime('%B %-d, %Y')}",
+      "Your flag notifications are now extended until #{expires_at.strftime("%B %-d, %Y")}",
     )
   end
 

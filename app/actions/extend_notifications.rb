@@ -14,8 +14,8 @@ class ExtendNotifications
     charge = Stripe::Charge.create(
       customer: customer.id,
       amount: amount,
-      description: "#{years} #{'year'.pluralize(years)} of notifications",
-      currency: 'usd',
+      description: "#{years} #{"year".pluralize(years)} of notifications",
+      currency: "usd",
     )
 
     # Extend the user's notifications, optimistically assuming that the charge
@@ -43,7 +43,7 @@ class ExtendNotifications
     @customer ||= Stripe::Customer.create(
       email: email,
       source: token,
-      metadata: { user_id: user.id },
+      metadata: {user_id: user.id},
     )
   end
 end

@@ -25,6 +25,6 @@ class ApplicationController < ActionController::Base
   protected
 
   def set_layout
-    'flag'
+    "flag"
   end
 end

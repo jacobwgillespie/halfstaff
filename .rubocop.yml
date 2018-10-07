@@ -201,7 +201,10 @@ SpecialGlobalVars:
   Enabled: false
 
 StringLiterals:
-  EnforcedStyle: single_quotes
+  EnforcedStyle: double_quotes
+
+Style/StringLiteralsInInterpolation:
+  EnforcedStyle: double_quotes
 
 Style/TrailingCommaInArrayLiteral:
   Enabled: true
@@ -370,4 +373,10 @@ Style/MixinUsage:
   Enabled: false
 
 Style/StderrPuts:
+  Enabled: false
+
+Layout/SpaceInsideHashLiteralBraces:
+  Enabled: false
+
+Layout/BlockAlignment:
   Enabled: false

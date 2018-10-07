@@ -1,7 +1,7 @@
 class HashidBuilder
   class << self
     def hashids
-      @hashids ||= Hashids.new('halfstaff')
+      @hashids ||= Hashids.new("halfstaff")
     end
 
     def encode(*args)

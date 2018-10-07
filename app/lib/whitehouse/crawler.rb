@@ -1,6 +1,6 @@
 module Whitehouse
   class Crawler
-    BASE_URL = 'https://www.whitehouse.gov'.freeze
+    BASE_URL = "https://www.whitehouse.gov".freeze
 
     class << self
       def flag_proclamations(page = nil)
@@ -9,7 +9,7 @@ module Whitehouse
         proclamations = urls.map { |u| proclamation(u) }
 
         proclamations = proclamations.select do |proclamation|
-          proclamation['body'].find_index do |line|
+          proclamation["body"].find_index do |line|
             line.match(/half[\s-]staff/i)
           end
         end
@@ -20,14 +20,14 @@ module Whitehouse
       private
 
       def proclamation_links(page = nil)
-        query = page ? "page/#{page}/" : ''
+        query = page ? "page/#{page}/" : ""
 
         links = Wombat.crawl do
           base_url BASE_URL
           path "/presidential-actions/#{query}"
 
-          links({ xpath: '//h2/a/@href' }, :list)
-        end['links']
+          links({xpath: "//h2/a/@href"}, :list)
+        end["links"]
 
         links
       end
@@ -35,15 +35,15 @@ module Whitehouse
       def proclamation(url)
         proclamation = Wombat.crawl do
           base_url BASE_URL
-          path url.gsub(BASE_URL, '')
+          path url.gsub(BASE_URL, "")
 
-          title css: 'h1.page-header__title'
-          date css: '.meta__date time'
+          title css: "h1.page-header__title"
+          date css: ".meta__date time"
 
-          body({ css: '.page-content__content p' }, :list)
+          body({css: ".page-content__content p"}, :list)
         end
 
-        proclamation['url'] = "#{BASE_URL}#{url.gsub(BASE_URL, '')}"
+        proclamation["url"] = "#{BASE_URL}#{url.gsub(BASE_URL, "")}"
 
         proclamation
       end
