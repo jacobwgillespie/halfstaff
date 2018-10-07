@@ -98,7 +98,7 @@ module Whitehouse
 
     def notice_type
       @notice_type ||= begin
-        if body_text =~ /on the day of interment/i
+        if body_text.match? /on the day of interment/i
           'interment'
         else
           'date'

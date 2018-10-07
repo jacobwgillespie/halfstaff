@@ -15,7 +15,7 @@ class User < ApplicationRecord
       token: token,
     ).where('token_generated_at > ?', 1.hour.ago).first
 
-    user.reset_login if user
+    user&.reset_login
 
     user
   end
@@ -42,6 +42,7 @@ class User < ApplicationRecord
 
   def issue_token
     return if last_texted_about_login_at && last_texted_about_login_at > 10.minutes.ago
+
     if token_generated_at.nil? || token_generated_at < 1.hour.ago
       self.token = rand(9999).to_s.center(4, rand(9).to_s)
       self.token_generated_at = Time.now
