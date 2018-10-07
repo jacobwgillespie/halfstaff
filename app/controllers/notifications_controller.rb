@@ -16,7 +16,7 @@ class NotificationsController < ApplicationController
     )
 
     if action.extend_subscription
-      flash[:notice] = "Successfully extended notifications by #{years} #{'years'.pluralize(years)}"
+      flash[:notice] = "Successfully extended notifications by #{years} #{"years".pluralize(years)}"
     end
 
     redirect_to notifications_path
@@ -30,9 +30,11 @@ class NotificationsController < ApplicationController
       user: current_user,
     )
 
-    flash[:notice] = (
-      action.pause ? 'Successfully paused notifications' : 'Successfully resumed notifications'
-    )
+    flash[:notice] = if action.pause
+                       "Successfully paused notifications"
+                     else
+                       "Successfully resumed notifications"
+                     end
 
     redirect_to notifications_path
   end

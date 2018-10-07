@@ -2,7 +2,7 @@ class AuthenticationController < ApplicationController
   # Receive a phone number, send a token, redirect to token page
   def phone
     unless Phone.valid?(params[:phone])
-      flash[:error] = 'Invalid phone number'
+      flash[:error] = "Invalid phone number"
       return redirect_to(notifications_path)
     end
 
@@ -26,10 +26,10 @@ class AuthenticationController < ApplicationController
 
     if @user
       session[:user] = @user.id
-      flash[:notice] = 'Successfully verified your phone number'
+      flash[:notice] = "Successfully verified your phone number"
       redirect_to :notifications
     else
-      flash[:error] = 'Invalid token, please try again'
+      flash[:error] = "Invalid token, please try again"
       redirect_to authentication_token_path(params[:phone])
     end
   end
