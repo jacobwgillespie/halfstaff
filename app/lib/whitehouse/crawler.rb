@@ -20,7 +20,7 @@ module Whitehouse
       private
 
       def proclamation_links(page = nil)
-        query = page ? "page/#{page}/2" : ''
+        query = page ? "page/#{page}/" : ''
 
         links = Wombat.crawl do
           base_url BASE_URL

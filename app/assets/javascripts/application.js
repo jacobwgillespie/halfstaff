@@ -1,8 +1,8 @@
 //= require checkout
-// require jquery
-// require jquery_ujs
-// require turbolinks
-// require_tree .
+//= require rails-ujs
+//= require activestorage
+//= require turbolinks
+//= require_tree .
 
 try {
   navigator.serviceWorker.getRegistrations().then(function(registrations) {
